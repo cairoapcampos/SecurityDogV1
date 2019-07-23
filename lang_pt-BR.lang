@@ -11,10 +11,9 @@
 ###  10 - Configurar SSH                                                  ###
 ###  11 - Configuração de Banner                                          ###
 ###  12 - Configurar Fail2ban                                             ###
-###  13 - Configurar Port Knocking                                        ###
-###  14 - Analisar o sistema em busca de Rootkits                         ###
-###  15 - Remover pacotes desnecessários                                  ###
-###  16 - Verificar duplicidade de ID do Root                             ###
+###  13 - Analisar o sistema em busca de Rootkits                         ###
+###  14 - Remover pacotes desnecessários                                  ###
+###  15 - Verificar duplicidade de ID do Root                             ###
 ###  0 - Sair                                                             ###
 Escolha uma das opções acima:
 
