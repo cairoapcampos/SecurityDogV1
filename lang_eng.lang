@@ -11,9 +11,8 @@
 ###  10 - SSH settings                                                    ###
 ###  11 - Banner settings                                                 ###
 ###  12 - Fail2ban settings                                               ###
-###  13 - Port Knocking Settings                                          ###
-###  14 - Scan Rootkits in operating system                               ###
-###  15 - Remove unnecessary packages                                     ###
-###  16 - Verify Root ID Duplication                                      ###
+###  13 - Scan Rootkits in operating system                               ###
+###  14 - Remove unnecessary packages                                     ###
+###  15 - Verify Root ID Duplication                                      ###
 ###  0 - Exit                                                             ###
 Choose one of the options above:
