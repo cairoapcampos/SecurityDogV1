@@ -1,0 +1,8 @@
+#!/bin/bash
+echo
+echo "                                                ######################"
+echo "                                                #       Welcome!     #"
+echo "                                                ######################"
+echo
+echo "                     Remember this: With great powers comes great responsibility. Uncle Ben."
+echo

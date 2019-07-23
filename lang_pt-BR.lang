@@ -1,0 +1,21 @@
+######                       Opções de Hardening                       ######
+###  1 - Iniciar todas as configurações                                   ###
+###  2 - Atualizar lista de pacotes e instalar pacotes para o hardening   ###
+###  3 - Atualizar pacotes que possuem vulnerabilidades                   ###
+###  4 - Desabilitar CTRL + ALT + DEL                                     ###
+###  5 - Habilitar tempo de logout para terminal ocioso                   ###
+###  6 - Desabilitar login do Root no terminal físico                     ###
+###  7 - Desabilitar Shell de usuários/serviços que não fazem login       ###
+###  8 - Habilitar grupo que pode usar o comando su                       ###
+###  9 - Remover Suid bit de comandos                                     ###
+###  10 - Configurar SSH                                                  ###
+###  11 - Configuração de Banner                                          ###
+###  12 - Configurar Fail2ban                                             ###
+###  13 - Configurar Port Knocking                                        ###
+###  14 - Analisar o sistema em busca de Rootkits                         ###
+###  15 - Remover pacotes desnecessários                                  ###
+###  16 - Verificar duplicidade de ID do Root                             ###
+###  0 - Sair                                                             ###
+Escolha uma das opções acima:
+
+
