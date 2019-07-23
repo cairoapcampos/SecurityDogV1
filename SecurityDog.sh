@@ -428,65 +428,6 @@ Fail2ban
 fi
 }
 
-PortKnock() {
-echo
-echo "Definindo regras básicas de Firewall..."
-sleep 3
-echo
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp --dport ssh -j REJECT
-echo "Regras definidas com sucesso!"
-sleep 3
-
-cp /etc/default/knockd /etc/default/knockd.old
-cp /etc/knockd.conf /etc/knockd.conf.old
-
-echo
-echo "Listando interfaces disponiveis: "
-echo
-cat /etc/network/interfaces | grep iface | awk '{print $2}'
-echo
-echo -n "Escolha uma interface das listadas que o knockd deve monitorar: "
-read iface
-echo
-sed -i "s/START_KNOCKD=0/START_KNOCKD=1/" /etc/default/knockd
-sed -i -r 's/^#(.*KNOCKD_OPTS.*)$/\1/' /etc/default/knockd
-sed -i "s/-i eth1/-i $iface/" /etc/default/knockd
-
-echo -n "Defina a porta 1 para a batida de abertura: "
-read openport1
-echo
-echo -n "Defina a porta 2 para a batida de abertura: "
-read openport2
-echo
-echo -n "Defina a porta 3 para a batida de abertura: "
-read openport3
-echo
-echo -n "Defina a porta 1 para a batida de fechamento: "
-read closeport1
-echo
-echo -n "Defina a porta 2 para a batida de fechamento: "
-read closeport2
-echo
-echo -n "Defina a porta 3 para a batida de fechamento: "
-read closeport3
-echo
-echo -n "Defina o tempo de timeout: "
-read kntmt
-
-sed -i "s/UseSyslog/logfile = \/var\/log\/knockd.log/" /etc/knockd.conf
-sed -i "s/sequence    = 7000,8000,9000/sequence    = $openport1,$openport2,$openport3/" /etc/knockd.conf
-sed -i "s/sequence    = 9000,8000,7000/sequence    = $closeport1,$closeport2,$closeport3/" /etc/knockd.conf
-sed -i "s/seq_timeout = 5/seq_timeout = $kntmt/g" /etc/knockd.conf
-sed -i "s/-A/-I/" /etc/knockd.conf
-systemctl start knockd
-echo
-echo "Visualizando o status do knockd: "
-echo
-systemctl status knockd
-}
-
 Rkh() {
 echo
 sed -i 's/UPDATE_MIRRORS=0/UPDATE_MIRRORS=1/' /etc/rkhunter.conf
@@ -511,7 +452,6 @@ echo "Verificando o sistema: "
 echo
 rkhunter --check --sk
 }
-
 
 RmPKG() {
 echo
@@ -765,11 +705,6 @@ RtMenu
 
 Fail2banRT() {
 Fail2ban
-RtMenu
-}
-
-PortKnockRT() {
-PortKnock
 RtMenu
 }
 
