@@ -7,7 +7,7 @@
                         ,
                         |`-.__
                         / ' _/     Shell Script of hardening
-                       ****`      GNU/Linux Debian 9 (Stretch)
+                       ****`      GNU/Linux Debian 9 & 10
                       /    }
                      /  \ /           by Cairo Ap. Campos
                  \ /`   \\\
