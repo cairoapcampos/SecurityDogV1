@@ -92,10 +92,9 @@ menu() {
        10) ConfigSSHRT ;;
        11) EdiMotdIssueRT ;;
        12) Fail2banRT ;;
-       13) PortKnockRT ;;
-       14) RkhRT ;;
-       15) RmPKGRT ;;
-       16) RtIDRT ;;
+       13) RkhRT ;;
+       14) RmPKGRT ;;
+       15) RtIDRT ;;
        0) exit ;;
        *) echo " "
           echo "Opção Invalida! Retornando ao Menu..."
