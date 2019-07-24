@@ -188,7 +188,6 @@ RtMenu
 InstallPKG() {
 echo
 apt update && apt install -y debsecan fail2ban knockd htop rkhunter
-#apt install aide
 }
 
 ## Atualiza pacotes que possuem vulnerabilidades corrigidas ##
@@ -248,7 +247,7 @@ echo
 echo "O tempo de $tmplgt minutos, foi definido com sucesso!"
 }
 
-## Desabilita login direto do root no terminal físico do servidor ##
+## Desabilita login direto do root nos terminais de texto (tty) do servidor ##
 DisTermRoot() {
 echo
 for i in $(seq 12);
