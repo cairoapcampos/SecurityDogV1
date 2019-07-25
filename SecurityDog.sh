@@ -187,7 +187,7 @@ RtMenu
 ## Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 InstallPKG() {
 echo
-apt update && apt install -y debsecan fail2ban knockd htop rkhunter
+apt update && apt install -y debsecan fail2ban htop rkhunter
 }
 
 ## Atualiza pacotes que possuem vulnerabilidades corrigidas ##
