@@ -109,7 +109,7 @@ StartAllOptions() {
 clear
 cat initial.txt
 echo "############################################################################"
-echo "###  Atualizando lista de pacotes e instalando pacotes para o hardening  ###"
+echo "###  Atualizando lista de pacotes e instala pacotes para o hardening  ###"
 echo "############################################################################"
 InstallPKG
 echo
