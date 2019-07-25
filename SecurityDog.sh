@@ -193,6 +193,7 @@ apt update && apt install -y debsecan fail2ban htop rkhunter
 ## Atualiza pacotes que possuem vulnerabilidades corrigidas ##
 UpdatePKG() {
 
+dt=$(date +%d%m%y_%H%M)
 codename=$(lsb_release -c | tr -s '[:space:]' ' ' | cut -d ' ' -f2)
 ctvulpkg=$(debsecan --suite $codename --only-fixed --format packages | wc -l)
 
@@ -201,7 +202,8 @@ then
     echo
     echo "Os seguintes pacotes possuem vulnerabilidades de segurança: "
     echo
-    debsecan --suite $codename --only-fixed | tee Update_pkgs.txt
+    debsecan --suite $codename --only-fixed > Reports/ReportUpdatePkgs_$dt.txt
+    cat Reports/ReportUpdatePkgs_$dt.txt
     echo
     echo "Atualizando pacotes vulneraveis: "
     echo
