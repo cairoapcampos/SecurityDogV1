@@ -204,7 +204,7 @@ then
     echo
     echo "Os seguintes pacotes possuem vulnerabilidades de segurança: "
     echo
-    debsecan --suite $codename --only-fixed | tee Reports/ReportUpdatePkgs_$dt.txt
+    debsecan --suite $codename --only-fixed | tee Reports/VulnerableUpdatePkgs_$dt.txt
     echo
     echo "Atualizando pacotes vulneraveis: "
     echo
