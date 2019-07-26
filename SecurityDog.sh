@@ -211,7 +211,7 @@ then
     apt install $(debsecan --suite $codename --only-fixed --format packages)
 else
     echo
-    echo "Não existe pacotes com correções de vulnerabilidade disponiveis!"
+    echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" | tee Reports/VulnerableUpdatePkgs_$dt.txt
 fi
 
 hlpkg=$(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | wc -l)
