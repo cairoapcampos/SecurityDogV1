@@ -7,7 +7,7 @@ ctvulpkg=$(debsecan --suite $codename --only-fixed --format packages | wc -l)
 if [ $ctvulpkg -gt 0 ]
 then
     echo
-    debsecan --suite $codename --only-fixed | tee Reports/VulnerableUpdatePkgs_$dt.txt
+    debsecan --suite $codename --only-fixed > Reports/VulnerableUpdatePkgs_$dt.txt
     apt install $(debsecan --suite $codename --only-fixed --format packages)
 else
     echo
@@ -19,11 +19,8 @@ hlpkg=$(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | wc -l)
 if [ $hlpkg -gt 0 ]
 then
 echo
-echo "O(s) seguinte(s) pacote(s) não vulneraveis possue(m) atualização(ões): "
-echo
-apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/
-echo
-NewHlPKG
+apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ > Reports/NormalUpdatePkgs_$dt.txt
+apt install $(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/)
 else
 echo
 echo  "Não existe pacotes para serem atualizados!" > Reports/NormalUpdatePkgs_$dt.txt
