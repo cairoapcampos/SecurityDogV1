@@ -13,3 +13,18 @@ else
     echo
     echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" > Reports/VulnerableUpdatePkgs_$dt.txt
 fi
+
+hlpkg=$(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | wc -l)
+
+if [ $hlpkg -gt 0 ]
+then
+echo
+echo "O(s) seguinte(s) pacote(s) não vulneraveis possue(m) atualização(ões): "
+echo
+apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/
+echo
+NewHlPKG
+else
+echo
+echo  "Não existe pacotes para serem atualizados!" > Reports/NormalUpdatePkgs_$dt.txt
+fi
