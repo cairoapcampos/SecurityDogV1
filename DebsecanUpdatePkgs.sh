@@ -11,5 +11,5 @@ then
     apt install $(debsecan --suite $codename --only-fixed --format packages)
 else
     echo
-    echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" | tee Reports/VulnerableUpdatePkgs_$dt.txt
+    echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" > Reports/VulnerableUpdatePkgs_$dt.txt
 fi
