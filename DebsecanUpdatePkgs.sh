@@ -7,9 +7,9 @@ ctvulpkg=$(debsecan --suite $codename --only-fixed --format packages | wc -l)
 if [ $ctvulpkg -gt 0 ]
 then
     echo
-    debsecan --suite $codename --only-fixed | tee Reports/ReportUpdatePkgs_$dt.txt
+    debsecan --suite $codename --only-fixed | tee Reports/VulnerableUpdatePkgs_$dt.txt
     apt install $(debsecan --suite $codename --only-fixed --format packages)
 else
     echo
-    echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" | tee Reports/ReportUpdatePkgs_$dt.txt
+    echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" | tee Reports/VulnerableUpdatePkgs_$dt.txt
 fi
