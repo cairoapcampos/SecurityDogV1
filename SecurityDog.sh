@@ -190,8 +190,10 @@ echo
 apt update && apt install -y debsecan fail2ban htop rkhunter
 }
 
-## Atualiza pacotes que possuem vulnerabilidades corrigidas ##
+## Atualiza pacotes e agenda tarefa de atualização no Cron ##
 UpdatePKG() {
+
+CronRule
 
 dt=$(date +%d%m%y_%H%M)
 codename=$(lsb_release -c | tr -s '[:space:]' ' ' | cut -d ' ' -f2)
