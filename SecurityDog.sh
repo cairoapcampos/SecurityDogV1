@@ -641,7 +641,7 @@ fi
 
 CronRule(){
 echo "##### Regra para atualizar pacotes vulneraveis #####" > jobs.txt
-echo "00 00 * * 6 ./DebsecanUpdatePkgs.sh" >> jobs.txt
+echo "00 00 * * 6 bash /root/SecurityDogV1/DebsecanUpdatePkgs.sh" >> jobs.txt
 crontab jobs.txt
 rm jobs.txt
 }
