@@ -202,8 +202,7 @@ then
     echo
     echo "Os seguintes pacotes possuem vulnerabilidades de segurança: "
     echo
-    debsecan --suite $codename --only-fixed > Reports/ReportUpdatePkgs_$dt.txt
-    cat Reports/ReportUpdatePkgs_$dt.txt
+    debsecan --suite $codename --only-fixed | tee Reports/ReportUpdatePkgs_$dt.txt
     echo
     echo "Atualizando pacotes vulneraveis: "
     echo
@@ -636,6 +635,13 @@ echo
 sleep 3
 CPBANNER
 fi
+}
+
+CronRule(){
+echo "##### Regra para atualizar pacotes vulneraveis #####" > jobs.txt
+echo "00 00 * * 6 sh DebsecanUpdatePkgs.sh" >> jobs.txt
+crontab jobs.txt
+rm jobs.txt
 }
 
 #######################################
