@@ -653,7 +653,6 @@ cp /etc/fstab /etc/fstab.old
 boot="defaults,nosuid 0 2"
 bar="defaults 0 1"
 home="defaults,nosuid,noexec,nodev 0 2"
-usr="defaults,nosuid,nodev 0 2"
 tmp="defaults,nosuid,noexec,nodev 0 2"
 var="defaults,nosuid,noexec,nodev 0 2"
 var_log="defaults,nosuid,noexec,noatime,nodev 0 2"
