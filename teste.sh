@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cp /etc/fstab /etc/fstab.old
 
 boot="defaults,nosuid 0 2"
