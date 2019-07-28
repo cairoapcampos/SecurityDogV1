@@ -74,6 +74,7 @@ menu() {
    echo "${var[14]}"
    echo "${var[15]}"
    echo "${var[16]}"
+   echo "${var[17]}"
    echo "#############################################################################"
    echo
    echo -n "${var[18]}"
@@ -94,6 +95,7 @@ menu() {
        13) RkhRT ;;
        14) RmPKGRT ;;
        15) RtIDRT ;;
+       16) EditFstabRT;;
        0) exit ;;
        *) echo " "
           echo "Opção Invalida! Retornando ao Menu..."
