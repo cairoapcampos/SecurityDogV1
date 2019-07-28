@@ -785,8 +785,8 @@ RtID
 RtMenu
 }
 
-RtIDRT() {
-RtID
+EditFstabRT() {
+EditFstab
 RtMenu
 }
 
