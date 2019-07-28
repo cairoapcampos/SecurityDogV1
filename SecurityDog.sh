@@ -698,6 +698,9 @@ c=$(echo "$line" | awk '{print $3}')
    echo "Partição Desconhecida!"
    fi
 done < clFstab.txt
+
+echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
+
 }
 
 #######################################
