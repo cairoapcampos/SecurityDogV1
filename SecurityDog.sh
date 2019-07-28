@@ -680,11 +680,6 @@ c=$(echo "$line" | awk '{print $3}')
    b="\/home"
    new_home=$(echo "$a $b $c $home")
    sed -i 's/'"$a.*"'/'"$new_home"'/' /etc/fstab
-   elif [ $b = "/usr" ]
-   then
-   b="\/usr"
-   new_usr=$(echo "$a $b $c $usr")
-   sed -i 's/'"$a.*"'/'"$new_usr"'/' /etc/fstab
    elif [ $b = "/tmp" ]
    then
    b="\/tmp"
