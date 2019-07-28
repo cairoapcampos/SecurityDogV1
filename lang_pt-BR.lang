@@ -14,6 +14,7 @@
 ###  13 - Analisar o sistema em busca de Rootkits                         ###
 ###  14 - Remover pacotes desnecessários                                  ###
 ###  15 - Verificar duplicidade de ID do Root                             ###
+###  16 - Proteger partições listadas em /etc/fstab                       ###
 ###  0 - Sair                                                             ###
 Escolha uma das opções acima:
 
