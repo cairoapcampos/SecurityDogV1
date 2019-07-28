@@ -14,5 +14,6 @@
 ###  13 - Scan Rootkits in operating system                               ###
 ###  14 - Remove unnecessary packages                                     ###
 ###  15 - Verify Root ID Duplication                                      ###
+###  16 - Protect Partitions Listed in /etc/fstab                         ###
 ###  0 - Exit                                                             ###
 Choose one of the options above:
