@@ -5,7 +5,6 @@ cp /etc/fstab /etc/fstab.old
 boot="defaults,nosuid 0 2"
 bar="defaults 0 1"
 home="defaults,nosuid,noexec,nodev 0 2"
-usr="defaults,nosuid,nodev 0 2"
 tmp="defaults,nosuid,noexec,nodev 0 2"
 var="defaults,nosuid,noexec,nodev 0 2"
 var_log="defaults,nosuid,noexec,noatime,nodev 0 2"
@@ -32,11 +31,6 @@ c=$(echo "$line" | awk '{print $3}')
    b="\/home"
    new_home=$(echo "$a $b $c $home")
    sed -i 's/'"$a.*"'/'"$new_home"'/' /etc/fstab
-   elif [ $b = "/usr" ]
-   then
-   b="\/usr"
-   new_usr=$(echo "$a $b $c $usr")
-   sed -i 's/'"$a.*"'/'"$new_usr"'/' /etc/fstab
    elif [ $b = "/tmp" ]
    then
    b="\/tmp"
