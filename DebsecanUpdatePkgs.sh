@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## Remove temporariamente a protenção contra execução das partições
+mount -o remount,rw,exec /var
+mount -o remount,rw,exec /tmp
+
+## Atualizações
 dt=$(date +%d%m%y_%H%M)
 codename=$(lsb_release -c | tr -s '[:space:]' ' ' | cut -d ' ' -f2)
 ctvulpkg=$(debsecan --suite $codename --only-fixed --format packages | wc -l)
@@ -25,3 +30,7 @@ else
 echo
 echo  "Não existe pacotes para serem atualizados!" > Reports/NormalUpdatePkgs_$dt.txt
 fi
+
+## Adiciona novamente a proteção contra execução nas partições
+mount -o remount,rw,noexec /var
+mount -o remount,rw,noexec /tmp
