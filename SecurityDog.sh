@@ -549,6 +549,7 @@ c=$(echo "$line" | awk '{print $3}')
    fi
 done < clFstab.txt
 
+echo
 echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
 
 }
