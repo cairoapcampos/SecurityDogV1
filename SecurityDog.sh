@@ -43,11 +43,11 @@ menulang() {
 
 menulang
 
-var=(  )
+menuline=(  )
 
 while read line
 do
-var[$n]=$line
+menuline[$n]=$line
 n=$((n+1))
 done < $file
 
@@ -56,28 +56,28 @@ clear
 menu() {
    cat initial.txt
    echo "#############################################################################"
-   echo "${var[0]}"
+   echo "${menuline[0]}"
    echo "#############################################################################"
-   echo "${var[1]}"
-   echo "${var[2]}"
-   echo "${var[3]}"
-   echo "${var[4]}"
-   echo "${var[5]}"
-   echo "${var[6]}"
-   echo "${var[7]}"
-   echo "${var[8]}"
-   echo "${var[9]}"
-   echo "${var[10]}"
-   echo "${var[11]}"
-   echo "${var[12]}"
-   echo "${var[13]}"
-   echo "${var[14]}"
-   echo "${var[15]}"
-   echo "${var[16]}"
-   echo "${var[17]}"
+   echo "${menuline[1]}"
+   echo "${menuline[2]}"
+   echo "${menuline[3]}"
+   echo "${menuline[4]}"
+   echo "${menuline[5]}"
+   echo "${menuline[6]}"
+   echo "${menuline[7]}"
+   echo "${menuline[8]}"
+   echo "${menuline[9]}"
+   echo "${menuline[10]}"
+   echo "${menuline[11]}"
+   echo "${menuline[12]}"
+   echo "${menuline[13]}"
+   echo "${menuline[14]}"
+   echo "${menuline[15]}"
+   echo "${menuline[16]}"
+   echo "${menuline[17]}"
    echo "#############################################################################"
    echo
-   echo -n "${var[18]}"
+   echo -n "${menuline[18]}"
    read opcao
    case $opcao in
        1) StartAllOptions ;;
