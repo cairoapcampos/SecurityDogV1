@@ -28,8 +28,8 @@ menulang() {
    echo "#############################################################################"
    echo " "
    echo -n "Choose one of the options above: "
-   read opcao
-   case $opcao in
+   read option
+   case $option in
        1) file="lang_pt-BR.lang" ;;
        2) file="lang_eng.lang" ;;
        *) echo
@@ -78,8 +78,8 @@ menu() {
    echo "#############################################################################"
    echo
    echo -n "${menuline[18]}"
-   read opcao
-   case $opcao in
+   read option
+   case $option in
        1) StartAllOptions ;;
        2) InstallPKGRT ;;
        3) UpdatePKGRT ;;
