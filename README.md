@@ -3,7 +3,7 @@ Script de Hardening em GNU/Linux Debian 9 & 10
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img.png)
 
-## Instruções
+## 1.Instruções
 
 1. Fazer login como root:
 
