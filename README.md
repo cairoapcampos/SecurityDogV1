@@ -13,7 +13,7 @@ Script de Hardening em GNU/Linux Debian 9 & 10
 
 `git clone https://github.com/cairoapcampos/SecurityDogV1.git`
 
-3.Alterar permissões de scripts para que sejam executaveis:
+3. Alterar permissões de scripts para que sejam executaveis:
 
 `cd SecurityDogV1`
 
