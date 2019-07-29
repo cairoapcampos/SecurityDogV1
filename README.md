@@ -17,7 +17,7 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 `cd SecurityDogV1`
 
-`chmod +x SecurityDog.sh DebsecanUpdatePkgs.sh`
+`chmod 700 SecurityDog.sh DebsecanUpdatePkgs.sh`
 
 4. Rodar o script `SecurityDog.sh`:
 
