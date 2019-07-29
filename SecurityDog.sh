@@ -352,6 +352,22 @@ echo "$sbcmd"
 done
 }
 
+## Configuração do SSH ##
+ConfigSSH() {
+
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.old
+
+GNSSH
+PORTSSH
+GRPSSH
+IPSSH
+TCPWP
+systemctl restart ssh.service
+echo
+echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/ssh/sshd_config"
+sleep 5
+}
+
 ## Configurar arquivos Motd e Issue.net ##
 EdiMotdIssue() {
 echo
@@ -369,22 +385,6 @@ mv /etc/issue /etc/issue.old
 mv /etc/issue.net /etc/issue.net.old
 cd $HOME/SecurityDog
 CPBANNER
-}
-
-## Configuração do SSH ##
-ConfigSSH() {
-
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.old
-
-GNSSH
-PORTSSH
-GRPSSH
-IPSSH
-TCPWP
-systemctl restart ssh.service
-echo
-echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/ssh/sshd_config"
-sleep 5
 }
 
 ## Configuração Fail2ban ##
