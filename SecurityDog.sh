@@ -228,12 +228,12 @@ then
 echo
 echo "O(s) seguinte(s) pacote(s) não vulneraveis possue(m) atualização(ões): "
 echo
-apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/
+apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | tee Reports/NormalUpdatePkgs_$dt.txt
 echo
 NewHlPKG
 else
 echo
-echo  "Não existe mais pacotes a serem atualizados!"
+echo  "Não existe pacotes para serem atualizados!" | tee Reports/NormalUpdatePkgs_$dt.txt
 fi
 }
 
