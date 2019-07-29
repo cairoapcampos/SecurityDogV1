@@ -5,20 +5,24 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 ## 1.Instruções
 
-1. Fazer login como root:
+1. Ao instalar o sistema, particioná-lo com as seguintes partições além da swap:
+
+`/boot, /, /home, /tmp, /var, /var/log`
+
+2. Fazer login como root:
 
 `su -`
 
-2. Clonar o repositório:
+3. Clonar o repositório:
 
 `git clone https://github.com/cairoapcampos/SecurityDogV1.git`
 
-3. Alterar permissões de scripts para que sejam executaveis:
+4. Alterar permissões de scripts para que sejam executaveis:
 
 `cd SecurityDogV1`
 
 `chmod 700 SecurityDog.sh DebsecanUpdatePkgs.sh`
 
-4. Rodar o script `SecurityDog.sh`:
+5. Rodar o script `SecurityDog.sh`:
 
 `./SecurityDog.sh`
