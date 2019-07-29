@@ -560,8 +560,8 @@ echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
 
 GNSSH() {
 sed -i 's/#.*prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
-sed -i "s/#PermitEmptyPasswords no/PermitEmptyPasswords no/" /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sed -i "s/#PermitEmptyPasswords no/PermitEmptyPasswords no/" /etc/ssh/sshd_config
 echo
 echo "As configurações básicas foram definidas com sucesso!"
 }
