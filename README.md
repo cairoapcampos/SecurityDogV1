@@ -17,16 +17,20 @@ Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo 
 
 `su -`
 
-3. Clonar o repositório:
+3. Instalar o pacote `git`:
+
+`apt install git`
+
+4. Clonar o repositório:
 
 `git clone https://github.com/cairoapcampos/SecurityDogV1.git`
 
-4. Alterar permissões de scripts para que sejam executaveis:
+5. Alterar permissões de scripts para que sejam executaveis:
 
 `cd SecurityDogV1`
 
 `chmod 700 SecurityDog.sh DebsecanUpdatePkgs.sh`
 
-5. Rodar o script `SecurityDog.sh`:
+6. Rodar o script `SecurityDog.sh`:
 
 `./SecurityDog.sh`
