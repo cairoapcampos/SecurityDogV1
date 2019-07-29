@@ -9,6 +9,8 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 `/boot, /, /home, /tmp, /var, /var/log`
 
+![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img2.png)
+
 2. Fazer login como root:
 
 `su -`
