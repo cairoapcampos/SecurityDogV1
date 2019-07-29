@@ -3,7 +3,7 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img.png)
 
-## 1.Instruções
+## Instruções
 
 1. Ao instalar o sistema, particioná-lo com as seguintes partições além da swap:
 
