@@ -749,7 +749,7 @@ RtMenu
 }
 
 DisShellRT() {
-DisShel
+DisShell
 RtMenu
 }
 
