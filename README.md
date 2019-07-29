@@ -11,6 +11,8 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img2.png)
 
+Obs: O tamanho a ser definido para cada partição deve ser avaliado de acordo com o serviços que serão utilizados.
+
 2. Fazer login como root:
 
 `su -`
