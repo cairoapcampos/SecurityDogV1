@@ -383,7 +383,6 @@ mv /etc/update-motd.d/10-uname /etc/update-motd.d/10-uname.old
 mv /etc/motd /etc/motd.old
 mv /etc/issue /etc/issue.old
 mv /etc/issue.net /etc/issue.net.old
-cd $HOME/SecurityDog
 CPBANNER
 }
 
