@@ -561,6 +561,35 @@ echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
 ### Funções especificas ###
 ###########################
 
+CronRule(){
+echo "##### Regra para atualizar pacotes #####" > jobs.txt
+echo "00 00 * * 6 bash /root/SecurityDogV1/DebsecanUpdatePkgs.sh" >> jobs.txt
+crontab jobs.txt
+rm jobs.txt
+}
+
+NewHlPKG() {
+echo -n "Deseja atualizá-lo(s) [s/n] ?: "
+read newhlpkg
+if [ $newhlpkg = "s" ]
+then
+echo
+echo "Atualizando o(s) pacote(s): "
+echo
+apt install $(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/)
+elif [ $newhlpkg = "n" ]
+then
+echo
+echo "O(s) pacote(s) não será(ão) atualizado(s)!"
+else
+echo
+echo "Opção errada!"
+echo
+sleep 3
+NewHlPKG
+fi
+}
+
 GNSSH() {
 sed -i 's/#.*prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -683,35 +712,6 @@ echo
 sleep 3
 CPBANNER
 fi
-}
-
-NewHlPKG() {
-echo -n "Deseja atualizá-lo(s) [s/n] ?: "
-read newhlpkg
-if [ $newhlpkg = "s" ]
-then
-echo
-echo "Atualizando o(s) pacote(s): "
-echo
-apt install $(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/)
-elif [ $newhlpkg = "n" ]
-then
-echo
-echo "O(s) pacote(s) não será(ão) atualizado(s)!"
-else
-echo
-echo "Opção errada!"
-echo
-sleep 3
-NewHlPKG
-fi
-}
-
-CronRule(){
-echo "##### Regra para atualizar pacotes #####" > jobs.txt
-echo "00 00 * * 6 bash /root/SecurityDogV1/DebsecanUpdatePkgs.sh" >> jobs.txt
-crontab jobs.txt
-rm jobs.txt
 }
 
 #######################################
