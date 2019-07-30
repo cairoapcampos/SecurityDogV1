@@ -24,7 +24,7 @@ Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo 
 
 `su -`
 
-2. Criar usuários para a administração do servidor: :bug:
+2. Criar usuários para a administração do servidor:
 
 ```
 Ex:
