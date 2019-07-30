@@ -272,7 +272,11 @@ echo "Terminais desabilitados (tty1 à tty12) para o login do Root! "
 
 ## Remover shell válidas de usuarios que não precisam fazer login ##
 DisShell() {
+
 echo
+
+cp /etc/passwd /etc/passwd.old
+
 hmusr=$(ls /home/ | grep -v lost+found)
 vldusr=$(echo "root" && echo "$hmusr")
 
@@ -287,7 +291,9 @@ done < vldusr.txt
 
 while read line2
 do
-usermod -s /bin/false $line2 &> /dev/null
+usermod -s /bin/false $line2
+echo "Shell removida de: $line2"
+echo
 done < gnusr.txt
 
 rm gnusr.txt vldusr.txt
