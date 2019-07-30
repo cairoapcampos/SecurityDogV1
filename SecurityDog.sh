@@ -404,9 +404,10 @@ rips=$(echo "$ips" | sed 's/\//\\\//g')
 sed -i "s/ignoreip.*127.0.0.1\/8/ignoreip = 127.0.0.1\/8 $rips/" /etc/fail2ban/jail.conf
 
 echo
-echo -n "Defina o tempo em segundos em que o IP ficará banido ou bloqueado: "
-read secban
-sed -i "s/bantime.*600/bantime = $secban/" /etc/fail2ban/jail.conf
+echo -n "Digite o tempo que o IP ficará banido ou bloqueado (Digitar tempo em minutos): "
+read tmpban
+ctmpban=$((tmpban*60))
+sed -i "s/bantime.*600/bantime = $ctmpban/" /etc/fail2ban/jail.conf
 
 echo
 echo -n "Digite o numero máximo de tentaivas de login até um ip ser bloqueado: "
