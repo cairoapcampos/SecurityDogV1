@@ -293,6 +293,7 @@ while read line2
 do
 usermod -s /bin/false $line2
 echo "Shell removida de: $line2"
+sleep 3
 echo
 done < gnusr.txt
 
