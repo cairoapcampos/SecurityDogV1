@@ -374,7 +374,7 @@ echo
 echo "Desabilitando mensagem de caixa de e-mail no login"
 sed  -i "s/session    optional     pam_mail.so/#session    optional     pam_mail.so/" /etc/pam.d/sshd
 echo
-echo "Habilitando o issue.net no ssh"
+echo "Habilitando o issue.net em /etc/ssh/sshd_config"
 sed -i 's/#Banner.*none/Banner \/etc\/issue.net/' /etc/ssh/sshd_config
 echo
 echo "Desabilitando antigos arquivos do motd"
