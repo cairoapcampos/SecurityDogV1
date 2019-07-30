@@ -14,17 +14,17 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo com os serviços que serão utilizados.
 
-2.Na janela de `Seleção de software` marcar apenas `servidor ssh` e `utilitários de sistema padrão`.
+2. Na janela de `Seleção de software` marcar apenas as opções `servidor ssh` e `utilitários de sistema padrão`.
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img3.png)
 
 ### Pós-instalação
 
-2. Fazer login como root:
+1. Fazer login como root:
 
 `su -`
 
-3. Criar usuários para a administração do servidor:
+2. Criar usuários para a administração do servidor:
 
 ```
 Ex:
