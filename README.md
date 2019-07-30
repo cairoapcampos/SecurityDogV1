@@ -4,6 +4,7 @@ Script de hardening em GNU/Linux Debian 9 & 10
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img.png)
 
 ## Instruções
+### Instalação
 
 1. Ao instalar o sistema, particioná-lo com as seguintes partições além da swap:
 
@@ -12,6 +13,8 @@ Script de hardening em GNU/Linux Debian 9 & 10
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img2.png)
 
 Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo com os serviços que serão utilizados.
+
+### Pós-instalação
 
 2. Fazer login como root:
 
