@@ -289,17 +289,31 @@ do
 sed -i "/$line/d" gnusr.txt
 done < vldusr.txt
 
-while read line2
-do
-usermod -s /bin/false $line2
-echo "Shell removida de: $line2"
-sleep 3
-echo
-done < gnusr.txt
+usrshell=$(cat gnusr.txt | wc -l)
+
+if [ $usrshell -gt 0 ]
+then
+
+   echo
+   echo "Verificando usuários que possuem shell habilitada..."
+   sleep 3
+   echo
+
+   while read line2
+   do
+   usermod -s /bin/false $line2
+   echo "Shell removida de: $line2" | tee -a Reports/UserShells_$dt.txt
+   sleep 3
+   echo
+   done < gnusr.txt
+
+else
+   echo
+   echo "Não há usuários com shells mal configuradas!" | tee Reports/UserShells_$dt.txt
+   echo
+fi
 
 rm gnusr.txt vldusr.txt
-
-echo "Shells removidas com sucesso!"
 }
 
 ## Habilita no PAM o grupo que pode utilizar o comando su ##
