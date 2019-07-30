@@ -200,40 +200,48 @@ apt update && apt install -y debsecan fail2ban htop rkhunter
 ## Atualiza pacotes e agenda tarefa de atualização no Cron ##
 UpdatePKG() {
 
-CronRule
+findbin=$(which debsecan)
 
-dt=$(date +%d%m%y_%H%M)
-codename=$(lsb_release -c | tr -s '[:space:]' ' ' | cut -d ' ' -f2)
-ctvulpkg=$(debsecan --suite $codename --only-fixed --format packages | wc -l)
-
-if [ $ctvulpkg -gt 0 ]
-then
+if [ $findbin -eq 0 ]
+then 
     echo
-    echo "Os seguintes pacotes possuem vulnerabilidades de segurança: "
-    echo
-    debsecan --suite $codename --only-fixed | tee Reports/VulnerableUpdatePkgs_$dt.txt
-    echo
-    echo "Atualizando pacotes vulneraveis: "
-    echo
-    apt install $(debsecan --suite $codename --only-fixed --format packages)
+    echo "Os pacotes para o hardening não foram instalados. Por favor faça isso! "
 else
-    echo
-    echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" | tee Reports/VulnerableUpdatePkgs_$dt.txt
-fi
+    CronRule
 
-hlpkg=$(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | wc -l)
+    dt=$(date +%d%m%y_%H%M)
+    codename=$(lsb_release -c | tr -s '[:space:]' ' ' | cut -d ' ' -f2)
+    ctvulpkg=$(debsecan --suite $codename --only-fixed --format packages | wc -l)
 
-if [ $hlpkg -gt 0 ]
-then
-echo
-echo "O(s) seguinte(s) pacote(s) não vulneraveis possue(m) atualização(ões): "
-echo
-apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | tee Reports/NormalUpdatePkgs_$dt.txt
-echo
-NewHlPKG
-else
-echo
-echo  "Não existe pacotes para serem atualizados!" | tee Reports/NormalUpdatePkgs_$dt.txt
+    if [ $ctvulpkg -gt 0 ]
+    then
+        echo
+        echo "Os seguintes pacotes possuem vulnerabilidades de segurança: "
+        echo
+        debsecan --suite $codename --only-fixed | tee Reports/VulnerableUpdatePkgs_$dt.txt
+        echo
+        echo "Atualizando pacotes vulneraveis: "
+        echo
+        apt install $(debsecan --suite $codename --only-fixed --format packages)
+     else
+        echo
+        echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" | tee Reports/VulnerableUpdatePkgs_$dt.txt
+     fi
+
+     hlpkg=$(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | wc -l)
+
+     if [ $hlpkg -gt 0 ]
+     then
+         echo
+         echo "O(s) seguinte(s) pacote(s) não vulneraveis possue(m) atualização(ões): "
+         echo
+         apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | tee Reports/NormalUpdatePkgs_$dt.txt
+         echo
+         NewHlPKG
+     else
+         echo
+         echo  "Não existe pacotes para serem atualizados!" | tee Reports/NormalUpdatePkgs_$dt.txt
+     fi
 fi
 }
 
