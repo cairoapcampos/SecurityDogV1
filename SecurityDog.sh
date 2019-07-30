@@ -278,7 +278,7 @@ vldusr=$(echo "root" && echo "$hmusr")
 
 echo "$vldusr" > vldusr.txt
 
-cat /etc/passwd | cut -f 1 -d: > gnusr.txt
+cat /etc/passwd | grep -v /bin/false | cut -f 1 -d: > gnusr.txt
 
 while read line
 do
