@@ -1,4 +1,4 @@
-# SecurityDog :bat:
+# SecurityDog
 Script de hardening em GNU/Linux Debian 9 & 10
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img.png)
