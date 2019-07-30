@@ -17,6 +17,16 @@ Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo 
 
 `su -`
 
+3. Criar usuários para a administração do servidor:
+
+```
+Ex:
+
+adduser bruce.wayne
+adduser clark.kent
+adduser hal.jordan
+```
+
 3. Instalar o pacote `git`:
 
 `apt install git`
