@@ -654,28 +654,6 @@ echo "sshd: $ipsrl" >> /etc/hosts.allow
 echo "sshd: ALL" >> /etc/hosts.deny
 }
 
-NewHlPKG() {
-echo -n "Deseja atualizá-lo(s) [s/n] ?: "
-read newhlpkg
-if [ $newhlpkg = "s" ]
-then
-echo
-echo "Atualizando o(s) pacote(s): "
-echo
-apt install $(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/)
-elif [ $newhlpkg = "n" ]
-then
-echo
-echo "O(s) pacote(s) não será(ão) atualizado(s)!"
-else
-echo
-echo "Opção errada!"
-echo
-sleep 3
-NewHlPKG
-fi
-}
-
 CPBANNER() {
 echo
 echo -n "Instalar os banners issue.net e MOTD em inglês? A opção \"n\" os instalará em português [s/n] ?: "
@@ -700,6 +678,28 @@ echo "Opção errada!"
 echo
 sleep 3
 CPBANNER
+fi
+}
+
+NewHlPKG() {
+echo -n "Deseja atualizá-lo(s) [s/n] ?: "
+read newhlpkg
+if [ $newhlpkg = "s" ]
+then
+echo
+echo "Atualizando o(s) pacote(s): "
+echo
+apt install $(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/)
+elif [ $newhlpkg = "n" ]
+then
+echo
+echo "O(s) pacote(s) não será(ão) atualizado(s)!"
+else
+echo
+echo "Opção errada!"
+echo
+sleep 3
+NewHlPKG
 fi
 }
 
