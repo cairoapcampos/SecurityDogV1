@@ -277,6 +277,7 @@ echo
 
 cp /etc/passwd /etc/passwd.old
 
+dts=$(date +%d%m%y_%H%M)
 hmusr=$(ls /home/ | grep -v lost+found)
 vldusr=$(echo "root" && echo "$hmusr")
 
@@ -302,14 +303,14 @@ then
    while read line2
    do
    usermod -s /bin/false $line2
-   echo "Shell removida de: $line2" | tee -a Reports/UserShells_$dt.txt
+   echo "Shell removida de: $line2" | tee -a Reports/UserShells_$dts.txt
    sleep 3
    echo
    done < gnusr.txt
 
 else
    echo
-   echo "Não há usuários com shells mal configuradas!" | tee Reports/UserShells_$dt.txt
+   echo "Não há usuários com shells mal configuradas!" | tee Reports/UserShells_$dts.txt
    echo
 fi
 
