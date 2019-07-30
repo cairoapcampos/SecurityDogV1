@@ -28,7 +28,6 @@ Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo 
 
 ```
 Ex:
-
 adduser bruce.wayne
 adduser clark.kent
 adduser hal.jordan
