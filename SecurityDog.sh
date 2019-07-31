@@ -211,7 +211,7 @@ then
     echo "Instalando pacotes... "
     sleep 3
     InstallPKG
-    echo
+    clear
     UpdatePKG
 else
     CronRule
@@ -247,7 +247,7 @@ else
          NewHlPKG
      else
          echo
-         echo  "Não existe pacotes para serem atualizados!" | tee Reports/NormalUpdatePkgs_$dt.txt
+         echo  "Não existe pacotes não vulneraveis para serem atualizados!" | tee Reports/NormalUpdatePkgs_$dt.txt
      fi
 fi
 }
