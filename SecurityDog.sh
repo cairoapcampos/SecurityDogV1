@@ -715,6 +715,7 @@ fi
 }
 
 GRPSSH() {
+echo
 echo -n "Você deseja criar um grupo para usuários que poderão fazer login no SSH? [s/n]: "
 read opgpssh
 
