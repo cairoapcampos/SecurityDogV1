@@ -471,12 +471,13 @@ else
        
        F2bPort
        echo
-       echo "Reiniciando serviço do Fail2ban..."
+       echo "Reiniciando serviços do SSH e Fail2ban..."
        sleep 3
+       systemctl restart ssh.service
        systemctl restart fail2ban.service
        echo
        
-       echo "Ok.Serviço reiniciado!"
+       echo "Ok.Serviços reiniciados!"
        sleep 3
        echo
        
@@ -490,12 +491,13 @@ else
    
        F2bPort
        echo
-       echo "Reiniciando serviço do Fail2ban.."
+       echo "Reiniciando serviços do SSH e Fail2ban..."
        sleep 3
+       systemctl restart ssh.service
        systemctl restart fail2ban.service
        echo
        
-       echo "Ok.Serviço reiniciado!"
+       echo "Ok.Serviços reiniciados!"
        sleep 3
        echo
        
