@@ -454,19 +454,24 @@ sed -i "s/maxretry.*5/maxretry = $attlogin/" /etc/fail2ban/jail.conf
 echo
 
 echo "Reiniciando serviço do Fail2ban.."
+sleep 3
 systemctl restart fail2ban.service
 echo
 echo "Ok.Serviço reiniciado!"
+sleep 3
 
 elif [ $f2b = "n" ]
 then
 echo
 echo "OK. As configurações padrão serão mantidas!"
+sleep 3
 echo
 echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.conf"
+sleep 3
 else
 echo
 echo "Opção errada!"
+sleep 3
 Fail2ban
 fi
 }
