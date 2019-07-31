@@ -224,15 +224,18 @@ else
     then
         echo
         echo "Os seguintes pacotes possuem vulnerabilidades de segurança: "
+        sleep 3
         echo
         debsecan --suite $codename --only-fixed | tee Reports/VulnerableUpdatePkgs_$dt.txt
         echo
         echo "Atualizando pacotes vulneraveis: "
+        sleep 3
         echo
         apt install $(debsecan --suite $codename --only-fixed --format packages)
      else
         echo
         echo "Não existe pacotes com correções de vulnerabilidade disponiveis!" | tee Reports/VulnerableUpdatePkgs_$dt.txt
+        sleep 3
      fi
 
      hlpkg=$(apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | wc -l)
@@ -241,6 +244,7 @@ else
      then
          echo
          echo "O(s) seguinte(s) pacote(s) não vulneraveis possue(m) atualização(ões): "
+         sleep 3
          echo
          apt list --upgradable 2> /dev/null | grep / | cut -f 1 -d/ | tee Reports/NormalUpdatePkgs_$dt.txt
          echo
@@ -248,6 +252,7 @@ else
      else
          echo
          echo  "Não existe pacotes não vulneraveis para serem atualizados!" | tee Reports/NormalUpdatePkgs_$dt.txt
+         sleep 3
      fi
 fi
 }
