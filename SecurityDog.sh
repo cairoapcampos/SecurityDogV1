@@ -468,7 +468,6 @@ else
        echo -n "Digite o numero máximo de tentaivas de login até um ip ser bloqueado: "
        read  attlogin
        sed -i "s/maxretry.*5/maxretry = $attlogin/" /etc/fail2ban/jail.local #Debian 9 e 10
-       echo
        
        F2bPort
        echo
@@ -794,7 +793,7 @@ if [ $ctsshport -eq 0 ]
         then
             echo
             sed -i "/port.*ssh/{ s/port.*ssh/port    = $sshport/;:a;n;ba }" /etc/fail2ban/jail.local
-            chsshport=$(cat /etc/fail2ban/jail.local | grep -E 'port    = $sshport')
+            chsshport=$(cat /etc/fail2ban/jail.local | grep -E "port    = $sshport")
             echo "A seguinte alteração de porta do SSH foi realizada no Fail2Ban: $chsshport"
             sleep 3
         else
