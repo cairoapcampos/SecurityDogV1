@@ -200,12 +200,16 @@ apt update && apt install -y debsecan fail2ban htop rkhunter
 ## Atualiza pacotes e agenda tarefa de atualização no Cron ##
 UpdatePKG() {
 
-findbin=$(which debsecan)
+findbin=$(which debsecan | wc -l)
 
 if [ $findbin -eq 0 ]
 then 
     echo
-    echo "Os pacotes para o hardening não foram instalados. Por favor faça isso! "
+    echo "Os pacotes para o hardening não foram instalados!"
+    echo "Instalando pacotes... "
+    InstallPKGRT
+    echo
+    UpdatePKG
 else
     CronRule
 
