@@ -427,65 +427,85 @@ CPBANNER
 ## Configuração Fail2ban ##
 Fail2ban() {
 
-cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+findbin2=$(which fail2ban-server | wc -l)
 
-echo
-echo -n "Você deseja alterar as configurações padrão do Fail2ban? [s/n]: "
-read f2b
-
-if [ $f2b = "s" ]
-then
-
-echo
-echo -n "Defina endereços IP's que não serão bloqueados utilizando espaços (Ex: 192.168.0.29 192.168.1.0/24): "
-read ips
-rips=$(echo "$ips" | sed 's/\//\\\//g')
-sed -i "s/ignoreip.*127.0.0.1\/8/ignoreip = 127.0.0.1\/8 $rips/" /etc/fail2ban/jail.local #Debian 9
-sed -i "s/#ignoreip.*::1/ignoreip = 127.0.0.1\/8 ::1 $rips/" /etc/fail2ban/jail.local #Debian 10
-
-echo
-echo -n "Digite o tempo que o IP ficará banido ou bloqueado (Digitar tempo em minutos): "
-read tmpban
-ctmpban=$((tmpban*60))
-sed -i "s/bantime.*600/bantime = $ctmpban/" /etc/fail2ban/jail.local #Debian 9
-sed -i "s/bantime.*10m/bantime = $ctmpban/" /etc/fail2ban/jail.local #Debian 10
-
-echo
-echo -n "Digite o numero máximo de tentaivas de login até um ip ser bloqueado: "
-read  attlogin
-sed -i "s/maxretry.*5/maxretry = $attlogin/" /etc/fail2ban/jail.local #Debian 9 e 10
-echo
-
-echo "Reiniciando serviço do Fail2ban.."
-sleep 3
-systemctl restart fail2ban.service
-echo
-echo "Ok.Serviço reiniciado!"
-sleep 3
-echo
-echo "Serviços monitorados pelo Fail2Ban: "
-sleep 3
-echo
-fail2ban-client status
-
-elif [ $f2b = "n" ]
-then
-echo
-echo "OK. As configurações padrão serão mantidas!"
-sleep 3
-echo
-echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.local"
-sleep 3
-echo
-echo "Serviços monitorados pelo Fail2Ban: "
-sleep 3
-echo
-fail2ban-client status
+if [ $findbin2 -eq 0 ]
+then 
+    echo
+    echo "Os pacotes para o hardening não foram instalados!"
+    sleep 3
+    echo
+    echo "Instalando pacotes... "
+    sleep 3
+    InstallPKG
+    clear
+    Fail2ban
 else
-echo
-echo "Opção errada!"
-sleep 3
-Fail2ban
+
+   cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+   echo
+   echo -n "Você deseja alterar as configurações padrão do Fail2ban? [s/n]: "
+   read f2b
+
+   if [ $f2b = "s" ]
+   then
+       echo
+       echo -n "Defina endereços IP's que não serão bloqueados utilizando espaços (Ex: 192.168.0.29 192.168.1.0/24): "
+       read ips
+       rips=$(echo "$ips" | sed 's/\//\\\//g')
+       sed -i "s/ignoreip.*127.0.0.1\/8/ignoreip = 127.0.0.1\/8 $rips/" /etc/fail2ban/jail.local #Debian 9
+       sed -i "s/#ignoreip.*::1/ignoreip = 127.0.0.1\/8 ::1 $rips/" /etc/fail2ban/jail.local #Debian 10
+       echo
+       
+       echo -n "Digite o tempo que o IP ficará banido ou bloqueado (Digitar tempo em minutos): "
+       read tmpban
+       ctmpban=$((tmpban*60))
+       sed -i "s/bantime.*600/bantime = $ctmpban/" /etc/fail2ban/jail.local #Debian 9
+       sed -i "s/bantime.*10m/bantime = $ctmpban/" /etc/fail2ban/jail.local #Debian 10
+       echo
+       
+       echo -n "Digite o numero máximo de tentaivas de login até um ip ser bloqueado: "
+       read  attlogin
+       sed -i "s/maxretry.*5/maxretry = $attlogin/" /etc/fail2ban/jail.local #Debian 9 e 10
+       echo
+       
+       echo "Reiniciando serviço do Fail2ban.."
+       sleep 3
+       systemctl restart fail2ban.service
+       echo
+       
+       echo "Ok.Serviço reiniciado!"
+       sleep 3
+       echo
+       
+       echo "Serviços monitorados pelo Fail2Ban: "
+       sleep 3
+       echo
+       fail2ban-client status
+   
+   elif [ $f2b = "n" ]
+   then
+       echo
+       echo "OK. As configurações padrão serão mantidas!"
+       sleep 3
+       echo
+       
+       echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.local"
+       sleep 3
+       echo
+       
+       echo "Serviços monitorados pelo Fail2Ban: "
+       sleep 3
+       echo
+       fail2ban-client status
+       
+      else
+      echo
+      echo "Opção errada!"
+      sleep 3
+      Fail2ban
+   fi
 fi
 }
 
