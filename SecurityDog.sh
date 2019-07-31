@@ -471,7 +471,7 @@ else
        echo
        
        F2bPort
-       
+       echo
        echo "Reiniciando serviço do Fail2ban.."
        sleep 3
        systemctl restart fail2ban.service
@@ -490,7 +490,7 @@ else
    then
    
        F2bPort
-       
+       echo
        echo "Reiniciando serviço do Fail2ban.."
        sleep 3
        systemctl restart fail2ban.service
