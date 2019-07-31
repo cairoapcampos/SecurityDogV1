@@ -426,14 +426,15 @@ CPBANNER
 
 ## Configuração Fail2ban ##
 Fail2ban() {
+
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
 echo
 echo -n "Você deseja alterar as configurações padrão do Fail2ban? [s/n]: "
 read f2b
 
 if [ $f2b = "s" ]
 then
-
-cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 echo
 echo -n "Defina endereços IP's que não serão bloqueados utilizando espaços (Ex: 192.168.0.29 192.168.1.0/24): "
@@ -461,6 +462,11 @@ systemctl restart fail2ban.service
 echo
 echo "Ok.Serviço reiniciado!"
 sleep 3
+echo
+echo "Serviços monitorados pelo Fail2Ban: "
+sleep 3
+echo
+fail2ban-client status
 
 elif [ $f2b = "n" ]
 then
@@ -468,8 +474,13 @@ echo
 echo "OK. As configurações padrão serão mantidas!"
 sleep 3
 echo
-echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.conf"
+echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.local"
 sleep 3
+echo
+echo "Serviços monitorados pelo Fail2Ban: "
+sleep 3
+echo
+fail2ban-client status
 else
 echo
 echo "Opção errada!"
