@@ -748,10 +748,14 @@ then
     echo "AllowGroups $sshgname " >> /etc/ssh/sshd_config
     echo
     echo "O grupo $sshgname foi habilitado para usar o ssh!"
-else
+elif [ $sshdgrp = $sshgname ]
+then
+    echo
+    echo "O grupo $sshgname já foi definido anteriormente!"
+else  
     echo
     sed -i "s/AllowGroups.*/AllowGroups $sshgname/" /etc/ssh/sshd_config
-    echo "Já havia um grupo habilitado para usar o ssh, o mesmo foi subistituido por $sshgname!"
+    echo " O grupo $sshdgrp anteriormente habilitado para usar o ssh, foi subistituido por $sshgname!"
 fi
 }
 
