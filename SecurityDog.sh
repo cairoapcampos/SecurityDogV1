@@ -470,6 +470,8 @@ else
        sed -i "s/maxretry.*5/maxretry = $attlogin/" /etc/fail2ban/jail.local #Debian 9 e 10
        echo
        
+       F2bPort
+       
        echo "Reiniciando serviço do Fail2ban.."
        sleep 3
        systemctl restart fail2ban.service
@@ -486,12 +488,15 @@ else
    
    elif [ $f2b = "n" ]
    then
-       echo
-       echo "OK. As configurações padrão serão mantidas!"
+   
+       F2bPort
+       
+       echo "Reiniciando serviço do Fail2ban.."
        sleep 3
+       systemctl restart fail2ban.service
        echo
        
-       echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.local"
+       echo "Ok.Serviço reiniciado!"
        sleep 3
        echo
        
@@ -500,11 +505,20 @@ else
        echo
        fail2ban-client status
        
-      else
-      echo
-      echo "Opção errada!"
-      sleep 3
-      Fail2ban
+       echo
+       echo "As demais configurações padrão serão mantidas!"
+       sleep 3
+       echo
+       
+       echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.local"
+       sleep 3
+       echo       
+      
+       else
+       echo
+       echo "Opção errada!"
+       sleep 3
+       Fail2ban
    fi
 fi
 }
@@ -762,6 +776,34 @@ echo " " >> /etc/hosts.allow
 echo " " >> /etc/hosts.deny
 echo "sshd: $ipsrl" >> /etc/hosts.allow
 echo "sshd: ALL" >> /etc/hosts.deny
+}
+
+
+F2bPort(){
+ctsshport=$(cat /etc/ssh/sshd_config | grep -v "#" | grep -E 'Port ?' | cut -d" " -f2 | wc -l)
+
+if [ $ctsshport -eq 0 ]
+   then
+        echo
+        echo "O Fail2Ban nessecita que a opção Port do arquivo /etc/ssh/sshd_config esteja habilitada!"
+        PORTSSH
+        F2bPort
+    else
+        sshport=$(cat /etc/ssh/sshd_config | grep -v "#" | grep -E 'Port ?' | cut -d" " -f2)
+
+        if [ $sshport != "22" ]
+        then
+            echo
+            sed -i "/port.*ssh/{ s/port.*ssh/port    = $sshport/;:a;n;ba }" /etc/fail2ban/jail.local
+            chsshport=$(cat /etc/fail2ban/jail.local | grep -E 'port    = $sshport')
+            echo "A seguinte alteração de porta do SSH foi realizada no Fail2Ban: $chsshport"
+            sleep 3
+        else
+            echo
+            echo "A porta configurada no Fail2Ban é a padrão do SSH, nenhuma configuração é necessária!"
+            sleep 3
+        fi
+fi
 }
 
 CPBANNER() {
