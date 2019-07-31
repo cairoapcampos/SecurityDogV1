@@ -433,24 +433,26 @@ read f2b
 if [ $f2b = "s" ]
 then
 
-cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.old
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 echo
-echo -n "Defina endereços IP's que não serão bloqueados (Ex: 192.168.0.29 192.168.1.0/24): "
+echo -n "Defina endereços IP's que não serão bloqueados utilizando espaços (Ex: 192.168.0.29 192.168.1.0/24): "
 read ips
 rips=$(echo "$ips" | sed 's/\//\\\//g')
-sed -i "s/ignoreip.*127.0.0.1\/8/ignoreip = 127.0.0.1\/8 $rips/" /etc/fail2ban/jail.conf
+sed -i "s/ignoreip.*127.0.0.1\/8/ignoreip = 127.0.0.1\/8 $rips/" /etc/fail2ban/jail.local #Debian 9
+sed -i "s/#ignoreip.*::1/ignoreip = 127.0.0.1\/8 ::1 $rips/" /etc/fail2ban/jail.local #Debian 10
 
 echo
 echo -n "Digite o tempo que o IP ficará banido ou bloqueado (Digitar tempo em minutos): "
 read tmpban
 ctmpban=$((tmpban*60))
-sed -i "s/bantime.*600/bantime = $ctmpban/" /etc/fail2ban/jail.conf
+sed -i "s/bantime.*600/bantime = $ctmpban/" /etc/fail2ban/jail.local #Debian 9
+sed -i "s/bantime.*10m/bantime = $ctmpban/" /etc/fail2ban/jail.local #Debian 10
 
 echo
 echo -n "Digite o numero máximo de tentaivas de login até um ip ser bloqueado: "
 read  attlogin
-sed -i "s/maxretry.*5/maxretry = $attlogin/" /etc/fail2ban/jail.conf
+sed -i "s/maxretry.*5/maxretry = $attlogin/" /etc/fail2ban/jail.local #Debian 9 e 10
 echo
 
 echo "Reiniciando serviço do Fail2ban.."
