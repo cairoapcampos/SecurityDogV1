@@ -210,7 +210,7 @@ then
     echo
     echo "Instalando pacotes... "
     sleep 3
-    InstallPKGRT
+    InstallPKG
     echo
     UpdatePKG
 else
