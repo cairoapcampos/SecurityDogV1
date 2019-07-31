@@ -778,13 +778,45 @@ then
 
 IPSSH() {
 echo
-echo "Listando interfaces de rede: "
-echo
-ip a
-echo
-echo -n "Escolha um endereço IP de uma das interfaces acima para conectar ao SSH: "
-read opip
-echo "ListenAddress $opip" >> /etc/ssh/sshd_config
+echo -n "Você deseja definir uma interface de rede do servidor para a conexão SSH? [s/n]: "
+read opintssh
+
+if [ $opintssh = "s" ]
+then
+    echo
+    echo "Listando interfaces de rede: "
+    echo
+    ip a
+    echo
+    echo -n "Escolha um endereço IP de uma das interfaces acima para conectar ao SSH: "
+    read opipnow
+
+    listenip=$(cat /etc/ssh/sshd_config | grep ListenAddress | cut -f 2 -d" ")
+
+     if [ -z $listenip]
+     then
+         echo
+         echo "ListenAddress $opipnow" >> /etc/ssh/sshd_config
+         echo "O IP $opipnow de interface foi definido!"
+     elif [ $listenip = $opipnow ]
+     then
+           echo
+           echo "O IP $opipnow da interface já foi definido anteriormente!"
+     else  
+           echo
+           sed -i "s/ListenAddress.*/ListenAddress $opipnow/" /etc/ssh/sshd_config
+           echo " O grupo $listenip anteriormente habilitado para usar o ssh, foi subistituido por $opipnow!"
+     fi
+    
+elif [ $opintssh = "n" ]
+then
+    echo
+    echo "OK. Nenhuma interface será definida!"
+ else
+    echo
+    echo "Opção errada!"
+    IPSSH
+ fi
 }
 
 TCPWP() {
