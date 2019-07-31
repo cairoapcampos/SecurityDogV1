@@ -206,7 +206,10 @@ if [ $findbin -eq 0 ]
 then 
     echo
     echo "Os pacotes para o hardening não foram instalados!"
+    sleep 3
+    echo
     echo "Instalando pacotes... "
+    sleep 3
     InstallPKGRT
     echo
     UpdatePKG
