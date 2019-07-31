@@ -791,7 +791,7 @@ then
     echo -n "Escolha um endereço IP de uma das interfaces acima para conectar ao SSH: "
     read opipnow
 
-    listenip=$(cat /etc/ssh/sshd_config | grep -V "#" | grep ListenAddress | cut -f 2 -d" ")
+    listenip=$(cat /etc/ssh/sshd_config | grep -v "#" | grep ListenAddress | cut -f 2 -d" ")
 
      if [ -z $listenip]
      then
