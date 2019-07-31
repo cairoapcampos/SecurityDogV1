@@ -511,8 +511,7 @@ else
        echo
        
        echo "Caso seja necessário fazer alterações posteriores, basta editar o arquivo /etc/fail2ban/jail.local"
-       sleep 3
-       echo       
+       sleep 3    
       
        else
        echo
