@@ -699,12 +699,12 @@ then
 echo
 echo -n "Digite um numero de porta: "
 read newport
-sed -i "s/#.*22/Port $newport/" /etc/ssh/sshd_config
+sed -i "s/#Port 22/Port $newport/" /etc/ssh/sshd_config
 echo
 echo "A porta foi alterada para $newport!"
 elif [ $opport = "n" ]
 then
-sed -i 's/#.*22/Port 22/' /etc/ssh/sshd_config
+sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 echo
 echo "A porta 22 foi habilitada!"
 else
