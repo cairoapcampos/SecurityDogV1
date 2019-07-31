@@ -293,8 +293,6 @@ echo "Terminais desabilitados (tty1 à tty12) para o login do Root! "
 ## Remover shell válidas de usuarios que não precisam fazer login ##
 DisShell() {
 
-echo
-
 cp /etc/passwd /etc/passwd.old
 
 dts=$(date +%d%m%y_%H%M)
@@ -324,14 +322,12 @@ then
    do
    usermod -s /bin/false $line2
    echo "Shell removida de: $line2" | tee -a Reports/UserShells_$dts.txt
-   sleep 3
    echo
    done < gnusr.txt
 
 else
    echo
    echo "Não há usuários com shells mal configuradas!" | tee Reports/UserShells_$dts.txt
-   echo
 fi
 
 rm gnusr.txt vldusr.txt
