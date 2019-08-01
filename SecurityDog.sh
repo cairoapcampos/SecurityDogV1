@@ -226,7 +226,14 @@ findbin=$(which debsecan | wc -l)
 
 if [ $findbin -eq 0 ]
 then 
-    ForceInstallPKG
+    echo
+    echo "O pacote Debsecan não está instalado!"
+    sleep 3
+    echo
+    echo "Instalando pacote... "
+    sleep 3
+    InstallDebsecan
+    clear
     UpdatePKG
 else
     CronRule
@@ -466,7 +473,14 @@ findbin2=$(which fail2ban-server | wc -l)
 
 if [ $findbin2 -eq 0 ]
 then 
-    ForceInstallPKG
+    echo
+    echo "O pacote Fail2Ban não está instalado!"
+    sleep 3
+    echo
+    echo "Instalando pacote... "
+    sleep 3
+    InstallF2B
+    clear
     Fail2ban
 else
 
@@ -557,7 +571,14 @@ findbin3=$(which rkhunter | wc -l)
 
 if [ $findbin3 -eq 0 ]
 then 
-    ForceInstallPKG
+    echo
+    echo "O pacote Rkhunter não está instalado!"
+    sleep 3
+    echo
+    echo "Instalando pacote... "
+    sleep 3
+    InstallRkh
+    clear
     Rkh
 else
     sed -i 's/UPDATE_MIRRORS=0/UPDATE_MIRRORS=1/' /etc/rkhunter.conf
@@ -712,17 +733,6 @@ apt update && apt install -y rkhunter
 InstallHtop() {
 echo
 apt update && apt install -y htop
-}
-
-ForceInstallPKG(){
-echo
-echo "Os pacotes para o hardening não foram instalados!"
-sleep 3
-echo
-echo "Instalando pacotes... "
-sleep 3
-PKGS
-clear
 }
 
 CronRule(){
