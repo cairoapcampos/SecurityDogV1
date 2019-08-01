@@ -79,7 +79,7 @@ menu() {
    read option
    case $option in
        1) StartAllOptions ;;
-       2) InstallPKGRT ;;
+       2) PKGSRT ;;
        3) UpdatePKGRT ;;
        4) DisKeysRT ;;
        5) LgtTermRT ;;
