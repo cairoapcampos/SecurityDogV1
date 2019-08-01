@@ -793,7 +793,7 @@ then
 
     listenip=$(cat /etc/ssh/sshd_config | grep -v "#" | grep ListenAddress | cut -f 2 -d" ")
 
-     if [ -z $listenip]
+     if [ -z $listenip ]
      then
          echo
          echo "ListenAddress $opipnow" >> /etc/ssh/sshd_config
@@ -805,7 +805,7 @@ then
      else  
            echo
            sed -i "s/ListenAddress.*/ListenAddress $opipnow/" /etc/ssh/sshd_config
-           echo " O grupo $listenip anteriormente habilitado para usar o ssh, foi subistituido por $opipnow!"
+           echo " O IP $listenip anteriormente habilitado foi subistituido por $opipnow!"
      fi
     
 elif [ $opintssh = "n" ]
