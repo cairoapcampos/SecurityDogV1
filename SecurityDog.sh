@@ -848,6 +848,8 @@ then
     echo
     cp /etc/hosts.allow /etc/hosts.allow.old
     cp /etc/hosts.deny /etc/hosts.deny.old
+    
+    echo "Configurando o arquivo /etc/hosts.allow do TCP Wrappers para o serviço SSH..."
     echo "Defina os endereços IP's que podem acessar o SSH (Ex: 192.168.1.29 192.168.1.* 192.168.1.0/24 192.168.1.0/255.255.255.0): "
     read ipsrl
     echo " " >> /etc/hosts.allow
@@ -864,6 +866,7 @@ else
    if [ $newallow = "s" ]
    then
    echo
+   echo "Configurando o arquivo /etc/hosts.allow do TCP Wrappers para o serviço SSH..."
    echo "Defina os endereços IP's que podem acessar o SSH (Ex: 192.168.1.29 192.168.1.* 192.168.1.0/24 192.168.1.0/255.255.255.0): "
    read newipsrl
    tnewipsrl=$(echo "$newipsrl" | sed 's/\//\\\//g')
