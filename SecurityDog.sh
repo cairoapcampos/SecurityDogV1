@@ -711,14 +711,7 @@ echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
 ### Funções especificas ###
 ###########################
 
-InstallAllPKGS() {
-echo
-apt update && apt install -y debsecan fail2ban htop rkhunter
-}
-
-InstallDebsecan() {
-echo
-apt update && apt install -y debsecan
+InstallOthPKGS(){
 
 echo
 echo -n "Você deseja instalar outro pacote? [s/n]: "
@@ -741,19 +734,34 @@ else
 fi
 }
 
+
+InstallAllPKGS() {
+echo
+apt update && apt install -y debsecan fail2ban htop rkhunter
+}
+
+InstallDebsecan() {
+echo
+apt update && apt install -y debsecan
+InstallOthPKGS
+}
+
 InstallF2B() {
 echo
 apt update && apt install -y fail2ban
+InstallOthPKGS
 }
 
 InstallRkh() {
 echo
 apt update && apt install -y rkhunter
+InstallOthPKGS
 }
 
 InstallHtop() {
 echo
 apt update && apt install -y htop
+InstallOthPKGS
 }
 
 CronRule(){
