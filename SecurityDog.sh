@@ -111,7 +111,7 @@ cat initial.txt
 echo "############################################################################"
 echo "###  Atualizando lista de pacotes e instala pacotes para o hardening  ###"
 echo "############################################################################"
-InstallPKG
+PKGS
 echo
 echo "############################################################################"
 echo "###          Atualizando pacotes que possuem vulnerabilidades            ###"
@@ -190,7 +190,7 @@ RtMenu
 #############################################################################
 
 ## Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
-InstallPKG() {
+PKGS() {
 echo
 apt update && apt install -y debsecan fail2ban htop rkhunter
 }
