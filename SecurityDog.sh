@@ -104,7 +104,7 @@ menu() {
 
 }
 
-# Inicia todas as opções
+# 1. Inicia todas as opções
 StartAllOptions() {
 clear
 cat initial.txt
@@ -189,7 +189,7 @@ RtMenu
 ###  Fuções sem retorno para o Menu usadas pela a função StartAllOptions  ###
 #############################################################################
 
-## Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
+## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 PKGS() {
    echo
    echo "#############################################################################"
@@ -220,7 +220,7 @@ PKGS() {
    esac
 }
 
-## Atualiza pacotes e agenda tarefa de atualização no Cron ##
+## 3. Atualiza pacotes e agenda tarefa de atualização no Cron ##
 UpdatePKG() {
 
 findbin=$(which debsecan | wc -l)
@@ -280,7 +280,7 @@ else
 fi
 }
 
-## Desabilitar CTRL+ALT+DEL ##
+## 4. Desabilitar CTRL+ALT+DEL ##
 DisKeys() {
 echo
 systemctl mask ctrl-alt-del.target
@@ -289,7 +289,7 @@ echo
 echo "Reboot via teclas CTRL+ALT+DEL desativado com sucesso!"
 }
 
-## Logout automático do terminal após quantidade de minutos de inatividade ##
+## 5. Logout automático do terminal após quantidade de minutos de inatividade ##
 LgtTerm() {
 
 echo
@@ -321,7 +321,7 @@ else
 fi
 }
 
-## Desabilita login direto do root nos terminais de texto (tty) do servidor ##
+## 6. Desabilita login direto do root nos terminais de texto (tty) do servidor ##
 DisTermRoot() {
 echo
 for i in $(seq 12);
@@ -333,7 +333,7 @@ done
 echo "Terminais desabilitados (tty1 à tty12) para o login do Root! "
 }
 
-## Remover shell válidas de usuarios que não precisam fazer login ##
+## 7. Remover shell válidas de usuarios que não precisam fazer login ##
 DisShell() {
 
 cp /etc/passwd /etc/passwd.old
@@ -376,7 +376,7 @@ fi
 rm gnusr.txt vldusr.txt
 }
 
-## Habilita no PAM o grupo que pode utilizar o comando su ##
+## 8. Habilita no PAM o grupo que pode utilizar o comando su ##
 GrpPAM() {
 echo
 echo -n  "Digite um nome para o grupo que poderá utilizar o su: "
@@ -421,7 +421,7 @@ echo "Para visualizar logs da utilização do comando su, utilize o arquivo /var
 sleep 5
 }
 
-## Remover Suid bit de comandos ##
+## 9. Remover Suid bit de comandos ##
 DisSUID() {
 echo
 echo "O Suid bit foi removido dos seguintes comandos: "
@@ -433,7 +433,7 @@ echo "$sbcmd"
 done
 }
 
-## Configuração do SSH ##
+## 10. Configuração do SSH ##
 ConfigSSH() {
 
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.old
@@ -449,7 +449,7 @@ echo "Caso seja necessário fazer alterações posteriores, basta editar o arqui
 sleep 5
 }
 
-## Configurar arquivos Motd e Issue.net ##
+## 11. Configura os arquivos Motd e Issue.net do banner ##
 EdiMotdIssue() {
 echo
 echo "Desabilitando mensagem de caixa de e-mail no login"
@@ -467,7 +467,7 @@ mv /etc/issue.net /etc/issue.net.old
 CPBANNER
 }
 
-## Configuração Fail2ban ##
+## 12. Configuração do Fail2ban ##
 Fail2ban() {
 
 findbin2=$(which fail2ban-server | wc -l)
@@ -566,6 +566,7 @@ else
 fi
 }
 
+## 13. Instala, configura e executa o Rkhunter ##
 Rkh() {
 
 findbin3=$(which rkhunter | wc -l)
@@ -611,6 +612,7 @@ else
 fi
 }
 
+## 14. Remove pacotes desnecessários da instalação padrão  ##
 RmPKG() {
 echo
 echo "Removendo pacotes desnecessários: "
@@ -621,6 +623,7 @@ apt autoremove -y
 apt clean
 }
 
+## 15. Verifica a duplicidade de ID do Root  ##
 RtID() {
 
 idroot=$(cat /etc/passwd | grep :0: | wc -l)
@@ -649,6 +652,7 @@ else
 fi
 }
 
+## 16. Protege partições listadas no arquivo /etc/fstab   ##
 EditFstab(){
 
 cp /etc/fstab /etc/fstab.old
