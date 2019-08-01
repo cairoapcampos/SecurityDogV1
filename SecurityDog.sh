@@ -968,49 +968,65 @@ then
 
 TCPWP() {
 
-permallow=$(cat /etc/hosts.allow | grep sshd: | wc -l)
+echo
+echo -n "Gostaria de configurar o TCP Wrappers para o SSH? [s/n]: "
+read chtcpwp
+   
+if [ $chtcpwp = "s" ]
+then
 
-if [ $permallow -eq 0 ]
+    permallow=$(cat /etc/hosts.allow | grep sshd: | wc -l)
+
+    if [ $permallow -eq 0 ]
+    then
+        echo
+        cp /etc/hosts.allow /etc/hosts.allow.old
+        cp /etc/hosts.deny /etc/hosts.deny.old
+    
+        echo "Configurando o arquivo /etc/hosts.allow do TCP Wrappers para o serviço SSH..."
+        echo "Defina os endereços IP's que podem acessar o SSH (Ex: 192.168.1.29 192.168.1.* 192.168.1.0/24 192.168.1.0/255.255.255.0): "
+        read ipsrl
+        echo " " >> /etc/hosts.allow
+        echo "### Endereços IP Liberados ###" >> /etc/hosts.allow
+        echo "sshd: $ipsrl" >> /etc/hosts.allow
+        echo " " >> /etc/hosts.deny
+        echo "### Endereços IP Negados ###" >> /etc/hosts.deny
+        echo "sshd: ALL" >> /etc/hosts.deny
+    else
+        echo
+        echo -n "O arquivo /etc/hosts.allow do TCP Wrappers já está configurado para o SSH. Você Gostaria de reconfigurá-lo? [s/n]: "
+        read newallow
+   
+        if [ $newallow = "s" ]
+        then
+            echo
+            echo "Configurando o arquivo /etc/hosts.allow do TCP Wrappers para o serviço SSH..."
+            echo "Defina os endereços IP's que podem acessar o SSH (Ex: 192.168.1.29 192.168.1.* 192.168.1.0/24 192.168.1.0/255.255.255.0): "
+            read newipsrl
+            tnewipsrl=$(echo "$newipsrl" | sed 's/\//\\\//g')
+            sed -i "s/sshd:.*/sshd: $tnewipsrl/" /etc/hosts.allow
+   
+        elif [ $newallow = "n" ]
+        then
+             echo
+             echo "OK. As configurações realizadas em /etc/hosts.allow seram preservadas!"
+         else
+             echo
+             echo "Opção errada!"
+             TCPWP
+         fi
+      fi 
+
+elif [ $chtcpwp = "n" ]
 then
     echo
-    cp /etc/hosts.allow /etc/hosts.allow.old
-    cp /etc/hosts.deny /etc/hosts.deny.old
-    
-    echo "Configurando o arquivo /etc/hosts.allow do TCP Wrappers para o serviço SSH..."
-    echo "Defina os endereços IP's que podem acessar o SSH (Ex: 192.168.1.29 192.168.1.* 192.168.1.0/24 192.168.1.0/255.255.255.0): "
-    read ipsrl
-    echo " " >> /etc/hosts.allow
-    echo "### Endereços IP Liberados ###" >> /etc/hosts.allow
-    echo "sshd: $ipsrl" >> /etc/hosts.allow
-    echo " " >> /etc/hosts.deny
-    echo "### Endereços IP Negados ###" >> /etc/hosts.deny
-    echo "sshd: ALL" >> /etc/hosts.deny
+    echo "OK. O TCP Wrappers para o SSH não será configurado!"
+	
 else
-   echo
-   echo -n "O arquivo /etc/hosts.allow do TCP Wrappers já está configurado para o SSH. Você Gostaria de reconfigurá-lo? [s/n]: "
-   read newallow
-   
-   if [ $newallow = "s" ]
-   then
-   echo
-   echo "Configurando o arquivo /etc/hosts.allow do TCP Wrappers para o serviço SSH..."
-   echo "Defina os endereços IP's que podem acessar o SSH (Ex: 192.168.1.29 192.168.1.* 192.168.1.0/24 192.168.1.0/255.255.255.0): "
-   read newipsrl
-   tnewipsrl=$(echo "$newipsrl" | sed 's/\//\\\//g')
-   sed -i "s/sshd:.*/sshd: $tnewipsrl/" /etc/hosts.allow
-   
-   elif [ $newallow = "n" ]
-   then
-   echo
-   echo "OK. As configurações realizadas em /etc/hosts.allow seram preservadas!"
-   
-   else
-   echo
-   echo "Opção errada!"
-   TCPWP
-   fi
-fi 
-
+    echo
+    echo "Opção errada!"
+    TCPWP
+fi
 }
 
 F2bPort(){
