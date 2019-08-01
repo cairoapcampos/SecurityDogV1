@@ -199,6 +199,7 @@ PKGS() {
    echo "Instalar Fail2Ban"
    echo "Instalar Rkhunter"
    echo "Instalar Htop"
+   echo "Retornar para o menu principal"
    echo "#############################################################################"
    echo
    echo -n "Escolha uma opção: "
@@ -209,8 +210,9 @@ PKGS() {
        3) InstallF2B ;;
        4) InstallRkh ;;
        5) InstallHtop ;;
+       6) menu ;;
        *) echo " "
-          echo "Opção Invalida! Retornando ao Menu de pacotes..."
+          echo "Opção Invalida! Retornando para o menu de pacotes..."
           sleep 3
           clear
           PKGS ;;
@@ -686,6 +688,31 @@ echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
 ###########################
 ### Funções especificas ###
 ###########################
+
+InstallAllPKGS() {
+echo
+apt update && apt install -y debsecan fail2ban htop rkhunter
+}
+
+InstallDebsecan() {
+echo
+apt update && apt install -y debsecan
+}
+
+InstallF2B() {
+echo
+apt update && apt install -y fail2ban
+}
+
+InstallRkh() {
+echo
+apt update && apt install -y rkhunter
+}
+
+InstallHtop() {
+echo
+apt update && apt install -y htop
+}
 
 ForceInstallPKG(){
 echo
