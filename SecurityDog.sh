@@ -16,7 +16,7 @@ then
       exit
 fi
 
-## Menu de  escolha de idioma ##
+## Menu de escolha de idioma ##
 menulang() {
    cat initial.txt
    echo "#############################################################################"
