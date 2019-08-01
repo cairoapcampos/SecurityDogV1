@@ -846,8 +846,10 @@ cp /etc/hosts.deny /etc/hosts.deny.old
 echo "Defina os endereços IP's que podem acessar o SSH (Ex: 192.168.1.29 192.168.1.* 192.168.1.0/24 192.168.1.0/255.255.255.0): "
 read ipsrl
 echo " " >> /etc/hosts.allow
-echo " " >> /etc/hosts.deny
+echo "### Endereços IP Liberados ###" >> /etc/hosts.allow
 echo "sshd: $ipsrl" >> /etc/hosts.allow
+echo " " >> /etc/hosts.deny
+echo "### Endereços IP Negados ###" >> /etc/hosts.deny
 echo "sshd: ALL" >> /etc/hosts.deny
 }
 
