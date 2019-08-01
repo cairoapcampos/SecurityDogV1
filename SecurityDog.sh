@@ -191,6 +191,7 @@ RtMenu
 
 ## Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 PKGS() {
+   echo
    echo "#############################################################################"
    echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
    echo "#############################################################################"
@@ -718,6 +719,25 @@ apt update && apt install -y debsecan fail2ban htop rkhunter
 InstallDebsecan() {
 echo
 apt update && apt install -y debsecan
+
+echo
+echo -n "Você deseja instalar outro pacote? [s/n]: "
+read othpkg
+
+if [ $othpkg = "s" ]
+then
+PKGS
+elif [ $othpkg = "n" ]
+then
+    echo
+    echo "Retornando para o menu principal... "
+    sleep 3
+    menu  
+else
+    echo
+    echo "Opção errada!"
+    sleep 3
+    PKGS
 }
 
 InstallF2B() {
