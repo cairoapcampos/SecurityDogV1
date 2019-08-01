@@ -738,6 +738,7 @@ else
     echo "Opção errada!"
     sleep 3
     PKGS
+fi
 }
 
 InstallF2B() {
