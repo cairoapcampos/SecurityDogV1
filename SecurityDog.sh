@@ -802,27 +802,57 @@ echo "As configurações básicas foram definidas com sucesso!"
 }
 
 PORTSSH() {
-echo
-echo -n "Por motivos de segurança, você deseja mudar a porta 22 padrão do SSH? [s/n]: "
-read opport
+stsshport=$(cat /etc/ssh/sshd_config | grep "#Port 22" | wc -l)
 
-if [ $opport = "s" ]
-then
-echo
-echo -n "Digite um numero de porta: "
-read newport
-sed -i "s/#Port 22/Port $newport/" /etc/ssh/sshd_config
-echo
-echo "A porta foi alterada para $newport!"
-elif [ $opport = "n" ]
-then
-sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-echo
-echo "A porta 22 foi habilitada!"
+if [ $stsshport -eq 1 ]
+then 
+   echo
+   echo -n "Por motivos de segurança, você deseja mudar a porta 22 padrão do SSH? [s/n]: "
+   read opport
+
+   if [ $opport = "s" ]
+   then
+       echo
+       echo -n "Digite um numero de porta: "
+       read newport
+       sed -i "s/#Port 22/Port $newport/" /etc/ssh/sshd_config
+       echo
+       echo "A porta foi alterada para $newport!"
+   elif [ $opport = "n" ]
+   then
+      sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+      echo
+      echo "A porta 22 foi habilitada!"
+   else
+      echo
+      echo "Opção errada!"
+      PORTSSH
+   fi
+
 else
-echo
-echo "Opção errada!"
-PORTSSH
+      diffsshport=$(cat /etc/ssh/sshd_config | grep -v "#" | grep -E 'Port ?' | cut -d" " -f2)
+      echo
+      echo -n "A porta do SSH está definida como  $diffsshport, deseja alterá-la? [s/n]: "
+      read opport
+
+      if [ $opport = "s" ]
+      then
+          echo
+          echo -n "Digite um numero de porta: "
+          read newport
+          sed -i "s/Port $diffsshport/Port $newport/" /etc/ssh/sshd_config
+          echo
+          echo "A porta foi alterada para $newport!"
+        
+      elif [ $opport = "n" ]
+      then
+         echo
+	     echo "Ok. A porta não será alterada!"
+      else
+         echo
+         echo "Opção errada!"
+         PORTSSH
+      fi
 fi
 }
 
