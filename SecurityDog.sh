@@ -268,14 +268,34 @@ echo "Reboot via teclas CTRL+ALT+DEL desativado com sucesso!"
 
 ## Logout automático do terminal após quantidade de minutos de inatividade ##
 LgtTerm() {
+
 echo
 echo -n  "Digite o tempo de inatividade tolerado para logout automático (Digitar tempo em minutos): "
 read tmplgt
 calctmp=$((tmplgt*60))
-echo "export TMOUT=$calctmp" >> /etc/profile
-source /etc/profile
-echo
-echo "O tempo de $tmplgt minutos, foi definido com sucesso!"
+
+
+tmft=$(cat /etc/profile | grep TMOUT | wc -l)
+segtmft=$(cat /etc/profile | grep TMOUT | cut -d= -f2)
+
+if [ $tmft -eq 0 ]
+then
+    echo " " >> /etc/profile
+    echo "### Logout automático ###" >> /etc/profile
+    echo "export TMOUT=$calctmp" >> /etc/profile
+    source /etc/profile
+    echo
+    echo "O tempo de $tmplgt minutos, foi definido com sucesso!"
+elif [ $segtmft = $calctmp ]
+then
+    echo
+    echo "O Tempo de logout é o mesmo já definido!"
+else
+    echo
+    sed -i "s/export TMOUT.*/export TMOUT=$calctmp/" /etc/profile
+    mintmft=$((segtmft/60))
+    echo "O Tempo de logout foi atualizado de $mintmft minutos para $tmplgt minutos"
+fi
 }
 
 ## Desabilita login direto do root nos terminais de texto (tty) do servidor ##
