@@ -1,4 +1,4 @@
-# SecurityDog V1.0
+# SecurityDog V1.0 ![projects-microcontroller](https://img.shields.io/badge/script-shell-blue)
 Script de hardening em GNU/Linux Debian 9 & 10
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img.png)
