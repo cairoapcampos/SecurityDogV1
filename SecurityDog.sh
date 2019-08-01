@@ -458,6 +458,7 @@ sed  -i "s/session    optional     pam_mail.so/#session    optional     pam_mail
 echo
 echo "Habilitando o issue.net em /etc/ssh/sshd_config"
 sed -i 's/#Banner.*none/Banner \/etc\/issue.net/' /etc/ssh/sshd_config
+sed -i 's/#PrintLastLog yes/PrintLastLog no/' /etc/ssh/sshd_config
 echo
 echo "Desabilitando antigos arquivos do motd"
 chmod -x /etc/update-motd.d/10-uname
