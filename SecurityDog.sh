@@ -51,6 +51,7 @@ done < $file
 
 clear
 
+## Menu de escolha de funções de hardening ##
 menu() {
    cat initial.txt
    echo "#############################################################################"
@@ -185,9 +186,9 @@ EditFstab
 RtMenu
 }
 
-#############################################################################
-###  Fuções sem retorno para o Menu usadas pela a função StartAllOptions  ###
-#############################################################################
+#######################################################################################
+###  Fuções sem retorno para o menu principal usadas pela a função StartAllOptions  ###
+#######################################################################################
 
 ## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 PKGS() {
