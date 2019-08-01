@@ -530,32 +530,41 @@ fi
 }
 
 Rkh() {
-echo
-sed -i 's/UPDATE_MIRRORS=0/UPDATE_MIRRORS=1/' /etc/rkhunter.conf
-sed -i 's/MIRRORS_MODE=1/MIRRORS_MODE=0/' /etc/rkhunter.conf
-sed -i 's/WEB_CMD="\/bin\/false"/WEB_CMD=""/' /etc/rkhunter.conf
-sed -i 's/CRON_DAILY_RUN=""/CRON_DAILY_RUN="true"/' /etc/default/rkhunter
-sed -i 's/CRON_DB_UPDATE=""/CRON_DB_UPDATE="true"/' /etc/default/rkhunter
 
-echo "Verificando a versão instalada: "
-sleep 5
-echo
-rkhunter --versioncheck
-echo
-echo "Atualizando assinaturas de rootkits: "
-sleep 5
-echo
-rkhunter --update
-echo
-echo "Atualizando as propriedades dos arquivos: "
-sleep 5
-echo
-rkhunter --propupd
-echo
-echo "Verificando o sistema: "
-sleep 5
-echo
-rkhunter --check --sk
+findbin3=$(which rkhunter | wc -l)
+
+if [ $findbin3 -eq 0 ]
+then 
+    ForceInstallPKG
+    Rkh
+else
+    sed -i 's/UPDATE_MIRRORS=0/UPDATE_MIRRORS=1/' /etc/rkhunter.conf
+    sed -i 's/MIRRORS_MODE=1/MIRRORS_MODE=0/' /etc/rkhunter.conf
+    sed -i 's/WEB_CMD="\/bin\/false"/WEB_CMD=""/' /etc/rkhunter.conf
+    sed -i 's/CRON_DAILY_RUN=""/CRON_DAILY_RUN="true"/' /etc/default/rkhunter
+    sed -i 's/CRON_DB_UPDATE=""/CRON_DB_UPDATE="true"/' /etc/default/rkhunter
+
+    echo
+    echo "Verificando a versão instalada: "
+    sleep 5
+    echo
+    rkhunter --versioncheck
+    echo
+    echo "Atualizando assinaturas de rootkits: "
+    sleep 5
+    echo
+    rkhunter --update
+    echo
+    echo "Atualizando as propriedades dos arquivos: "
+    sleep 5
+    echo
+    rkhunter --propupd
+    echo
+    echo "Verificando o sistema: "
+    sleep 5
+    echo
+    rkhunter --check --sk
+fi
 }
 
 RmPKG() {
