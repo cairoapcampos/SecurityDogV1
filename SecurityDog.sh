@@ -27,8 +27,8 @@ menulang() {
    echo "#############################################################################"
    echo " "
    echo -n "Choose one of the options above: "
-   read option
-   case $option in
+   read oplang
+   case $oplang in
        1) file="lang_pt-BR.lang" ;;
        2) file="lang_eng.lang" ;;
        *) echo
@@ -76,8 +76,8 @@ menu() {
    echo "#############################################################################"
    echo
    echo -n "${menuline[18]}"
-   read option
-   case $option in
+   read opmenu
+   case $opmenu in
        1) StartAllOptions ;;
        2) PKGSRT ;;
        3) UpdatePKGRT ;;
