@@ -204,14 +204,7 @@ findbin=$(which debsecan | wc -l)
 
 if [ $findbin -eq 0 ]
 then 
-    echo
-    echo "Os pacotes para o hardening não foram instalados!"
-    sleep 3
-    echo
-    echo "Instalando pacotes... "
-    sleep 3
-    InstallPKG
-    clear
+    ForceInstallPKG
     UpdatePKG
 else
     CronRule
@@ -451,14 +444,7 @@ findbin2=$(which fail2ban-server | wc -l)
 
 if [ $findbin2 -eq 0 ]
 then 
-    echo
-    echo "Os pacotes para o hardening não foram instalados!"
-    sleep 3
-    echo
-    echo "Instalando pacotes... "
-    sleep 3
-    InstallPKG
-    clear
+    ForceInstallPKG
     Fail2ban
 else
 
@@ -671,6 +657,17 @@ echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
 ###########################
 ### Funções especificas ###
 ###########################
+
+ForceInstallPKG(){
+echo
+echo "Os pacotes para o hardening não foram instalados!"
+sleep 3
+echo
+echo "Instalando pacotes... "
+sleep 3
+InstallPKG
+clear
+}
 
 CronRule(){
 echo "##### Regra para atualizar pacotes #####" > jobs.txt
