@@ -191,8 +191,30 @@ RtMenu
 
 ## Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 PKGS() {
-echo
-apt update && apt install -y debsecan fail2ban htop rkhunter
+   echo "#############################################################################"
+   echo "           Escolha de pacotes a serem instalados para o Hardening            "
+   echo "#############################################################################"
+   echo "Instalar todos os pacotes"
+   echo "Instalar Debsecan"
+   echo "Instalar Fail2Ban"
+   echo "Instalar Rkhunter"
+   echo "Instalar Htop"
+   echo "#############################################################################"
+   echo
+   echo -n "Escolha uma opção: "
+   read oppkgs
+   case $oppkgs in
+       1) InstallAllPKGS ;;
+       2) InstallDebsecan ;;
+       3) InstallF2B ;;
+       4) InstallRkh ;;
+       5) InstallHtop ;;
+       *) echo " "
+          echo "Opção Invalida! Retornando ao Menu de pacotes..."
+          sleep 3
+          clear
+          PKGS ;;
+   esac
 }
 
 ## Atualiza pacotes e agenda tarefa de atualização no Cron ##
