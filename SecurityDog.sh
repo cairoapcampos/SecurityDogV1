@@ -192,14 +192,14 @@ RtMenu
 ## Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 PKGS() {
    echo "#############################################################################"
-   echo "           Escolha de pacotes a serem instalados para o Hardening            "
+   echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
    echo "#############################################################################"
-   echo "Instalar todos os pacotes"
-   echo "Instalar Debsecan"
-   echo "Instalar Fail2Ban"
-   echo "Instalar Rkhunter"
-   echo "Instalar Htop"
-   echo "Retornar para o menu principal"
+   echo "### 1 - Instalar todos os pacotes                                         ###"
+   echo "### 2 - Instalar Debsecan                                                 ###"
+   echo "### 3 - Instalar Fail2Ban                                                 ###"
+   echo "### 4 - Instalar Rkhunter                                                 ###"
+   echo "### 5 - Instalar Htop                                                     ###"
+   echo "### 0 - Retornar para o menu principal                                    ###"
    echo "#############################################################################"
    echo
    echo -n "Escolha uma opção: "
@@ -210,7 +210,7 @@ PKGS() {
        3) InstallF2B ;;
        4) InstallRkh ;;
        5) InstallHtop ;;
-       6) menu ;;
+       0) menu ;;
        *) echo " "
           echo "Opção Invalida! Retornando para o menu de pacotes..."
           sleep 3
