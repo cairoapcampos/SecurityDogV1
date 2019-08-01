@@ -233,7 +233,7 @@ then
     echo
     echo "Instalando pacote... "
     sleep 3
-    InstallDebsecan
+    apt update && apt install -y debsecan
     clear
     UpdatePKG
 else
@@ -480,7 +480,7 @@ then
     echo
     echo "Instalando pacote... "
     sleep 3
-    InstallF2B
+    apt update && apt install -y fail2ban
     clear
     Fail2ban
 else
@@ -578,7 +578,7 @@ then
     echo
     echo "Instalando pacote... "
     sleep 3
-    InstallRkh
+    apt update && apt install -y rkhunter
     clear
     Rkh
 else
