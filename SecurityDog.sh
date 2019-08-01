@@ -16,7 +16,6 @@ then
       exit
 fi
 
-
 ## Menu de  escolha de idioma ##
 menulang() {
    cat initial.txt
