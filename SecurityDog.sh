@@ -38,7 +38,6 @@ menulang() {
           clear
           menulang ;;
    esac
-
 }
 
 menulang
