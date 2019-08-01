@@ -672,7 +672,7 @@ sleep 3
 echo
 echo "Instalando pacotes... "
 sleep 3
-InstallPKG
+PKGS
 clear
 }
 
@@ -956,8 +956,8 @@ clear
 menu
 }
 
-InstallPKGRT() {
-InstallPKG
+PKGSRT() {
+PKGS
 RtMenu
 }
 
