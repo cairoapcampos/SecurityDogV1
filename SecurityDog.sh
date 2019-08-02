@@ -186,40 +186,12 @@ EditFstab
 RtMenu
 }
 
+
+## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
+
 #######################################################################################
 ###  Fuções sem retorno para o menu principal usadas pela a função StartAllOptions  ###
 #######################################################################################
-
-## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
-PKGS() {
-   echo
-   echo "#############################################################################"
-   echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
-   echo "#############################################################################"
-   echo "### 1 - Instalar todos os pacotes                                         ###"
-   echo "### 2 - Instalar Debsecan                                                 ###"
-   echo "### 3 - Instalar Fail2Ban                                                 ###"
-   echo "### 4 - Instalar Rkhunter                                                 ###"
-   echo "### 5 - Instalar Htop                                                     ###"
-   echo "### 0 - Retornar para o menu principal                                    ###"
-   echo "#############################################################################"
-   echo
-   echo -n "Escolha uma opção: "
-   read oppkgs
-   case $oppkgs in
-       1) InstallAllPKGS ;;
-       2) InstallDebsecanRT ;;
-       3) InstallF2BRT ;;
-       4) InstallRkhRT ;;
-       5) InstallHtopRT ;;
-       0) menu ;;
-       *) echo " "
-          echo "Opção Invalida! Retornando para o menu de pacotes..."
-          sleep 3
-          clear
-          PKGS ;;
-   esac
-}
 
 PKGS2() {
    echo
@@ -247,7 +219,7 @@ PKGS2() {
           echo "Opção Invalida! Retornando para o menu de pacotes..."
           sleep 3
           clear
-          PKGS ;;
+          PKGS2 ;;
    esac
 }
 
@@ -738,6 +710,41 @@ sleep 3
 ### Funções especificas ###
 ###########################
 
+InstallAllPKGS() {
+echo
+apt update && apt install -y debsecan fail2ban htop rkhunter
+}
+
+PKGS() {
+   echo
+   echo "#############################################################################"
+   echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
+   echo "#############################################################################"
+   echo "### 1 - Instalar todos os pacotes                                         ###"
+   echo "### 2 - Instalar Debsecan                                                 ###"
+   echo "### 3 - Instalar Fail2Ban                                                 ###"
+   echo "### 4 - Instalar Rkhunter                                                 ###"
+   echo "### 5 - Instalar Htop                                                     ###"
+   echo "### 0 - Retornar para o menu principal                                    ###"
+   echo "#############################################################################"
+   echo
+   echo -n "Escolha uma opção: "
+   read oppkgs
+   case $oppkgs in
+       1) InstallAllPKGS ;;
+       2) InstallDebsecanRT ;;
+       3) InstallF2BRT ;;
+       4) InstallRkhRT ;;
+       5) InstallHtopRT ;;
+       0) menu ;;
+       *) echo " "
+          echo "Opção Invalida! Retornando para o menu de pacotes..."
+          sleep 3
+          clear
+          PKGS ;;
+   esac
+}
+
 InstallOthPKGS(){
 
 echo
@@ -746,7 +753,7 @@ read othpkg
 
 if [ $othpkg = "s" ]
 then
-PKGS
+PKGS2
 elif [ $othpkg = "n" ]
 then
     echo
@@ -756,13 +763,8 @@ else
     echo
     echo "Opção errada!"
     sleep 3
-    PKGS
+    PKGS2
 fi
-}
-
-InstallAllPKGS() {
-echo
-apt update && apt install -y debsecan fail2ban htop rkhunter
 }
 
 InstallDebsecan() {
