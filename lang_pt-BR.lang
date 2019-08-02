@@ -4,7 +4,7 @@
 ###  3 - Atualizar pacotes que possuem vulnerabilidades                   ###
 ###  4 - Desabilitar CTRL + ALT + DEL                                     ###
 ###  5 - Habilitar tempo de logout para terminal ocioso                   ###
-###  6 - Desabilitar login do Root no terminal físico                     ###
+###  6 - Desabilitar terminais para impedir o login de Root               ###
 ###  7 - Desabilitar Shell de usuários/serviços que não fazem login       ###
 ###  8 - Habilitar grupo que pode usar o comando su                       ###
 ###  9 - Remover Suid bit de comandos                                     ###
