@@ -235,8 +235,8 @@ then
     echo
     echo "Instalando pacote... "
     sleep 3
+    echo
     apt update && apt install -y debsecan
-    #clear
     UpdatePKG
 else
     CronRule
@@ -485,8 +485,8 @@ then
     echo
     echo "Instalando pacote... "
     sleep 3
+    echo
     apt update && apt install -y fail2ban
-    #clear
     Fail2ban
 else
 
