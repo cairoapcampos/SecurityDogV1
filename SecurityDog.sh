@@ -112,7 +112,7 @@ cat initial.txt
 echo "############################################################################"
 echo "###  Atualizando lista de pacotes e instala pacotes para o hardening  ###"
 echo "############################################################################"
-PKGS2
+PKGS
 echo
 echo "############################################################################"
 echo "###          Atualizando pacotes que possuem vulnerabilidades            ###"
@@ -192,7 +192,7 @@ RtMenu
 
 ## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 
-PKGS2() {
+PKGS() {
    echo
    echo "#############################################################################"
    echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
@@ -218,7 +218,7 @@ PKGS2() {
           echo "Opção Invalida! Retornando para o menu de pacotes..."
           sleep 3
           clear
-          PKGS2 ;;
+          PKGS ;;
    esac
 }
 
@@ -709,43 +709,6 @@ sleep 3
 ### Funções especificas ###
 ###########################
 
-InstallAllPKGS() {
-echo
-apt update && apt install -y debsecan fail2ban htop rkhunter
-}
-
-### 
-
-PKGS() {
-   echo
-   echo "#############################################################################"
-   echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
-   echo "#############################################################################"
-   echo "### 1 - Instalar todos os pacotes                                         ###"
-   echo "### 2 - Instalar Debsecan                                                 ###"
-   echo "### 3 - Instalar Fail2Ban                                                 ###"
-   echo "### 4 - Instalar Rkhunter                                                 ###"
-   echo "### 5 - Instalar Htop                                                     ###"
-   echo "### 0 - Retornar para o menu principal                                    ###"
-   echo "#############################################################################"
-   echo
-   echo -n "Escolha uma opção: "
-   read oppkgs
-   case $oppkgs in
-       1) InstallAllPKGS ;;
-       2) InstallDebsecanRT ;;
-       3) InstallF2BRT ;;
-       4) InstallRkhRT ;;
-       5) InstallHtopRT ;;
-       0) menu ;;
-       *) echo " "
-          echo "Opção Invalida! Retornando para o menu de pacotes..."
-          sleep 3
-          clear
-          PKGS ;;
-   esac
-}
-
 InstallOthPKGS(){
 
 echo
@@ -766,6 +729,11 @@ else
     sleep 3
     PKGS2
 fi
+}
+
+InstallAllPKGS() {
+echo
+apt update && apt install -y debsecan fail2ban htop rkhunter
 }
 
 InstallDebsecan() {
@@ -1201,57 +1169,6 @@ RtMenu
 EditFstabRT() {
 EditFstab
 RtMenu
-}
-
-########################
-### InstallOthPKGSRT ###
-########################
-
-InstallOthPKGSRT(){
-
-echo
-echo -n "Você deseja instalar outro pacote? [s/n]: "
-read othpkg
-
-if [ $othpkg = "s" ]
-then
-PKGS
-elif [ $othpkg = "n" ]
-then
-    echo
-    echo "Retornando para o menu principal... "
-    sleep 3
-    menu  
-else
-    echo
-    echo "Opção errada!"
-    sleep 3
-    PKGS
-fi
-}
-
-InstallDebsecanRT() {
-echo
-apt update && apt install -y debsecan
-InstallOthPKGSRT
-}
-
-InstallF2BRT() {
-echo
-apt update && apt install -y fail2ban
-InstallOthPKGSRT
-}
-
-InstallRkhRT() {
-echo
-apt update && apt install -y rkhunter
-InstallOthPKGSRT
-}
-
-InstallHtopRT() {
-echo
-apt update && apt install -y htop
-InstallOthPKGSRT
 }
 
 menu
