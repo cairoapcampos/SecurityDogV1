@@ -584,6 +584,7 @@ then
     echo
     echo "Instalando pacote... "
     sleep 3
+    echo
     apt update && apt install -y rkhunter
     #clear
     Rkh
