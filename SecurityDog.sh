@@ -382,6 +382,8 @@ GrpPAM() {
 
 AddGrp
 
+cp /etc/pam.d/su /etc/pam.d/su.old
+
 pamline=$(cat /etc/pam.d/su | grep "# auth       required   pam_wheel.so" | grep -v group=nosu | wc -l)
 
 if [ $pamline -eq 1 ]
