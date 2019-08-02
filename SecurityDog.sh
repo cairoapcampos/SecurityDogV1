@@ -379,29 +379,8 @@ rm gnusr.txt vldusr.txt
 
 ## 8. Habilita no PAM o grupo que pode utilizar o comando su ##
 GrpPAM() {
-echo
-echo -n  "Digite um nome para o grupo que poderá utilizar o su: "
-read gname
-fgroup=$(cat /etc/group | cut -f 1 -d: | grep $gname)
-if [ -z $fgroup ]
-then
-    groupadd $gname
-    echo
-    echo  "O grupo $gname foi inserido com sucesso!"
-else
-    echo
-    echo "O grupo $gname já existe!"
-fi
 
-ls /home/ | grep -v lost+found > usrpam.txt
-
-while read lineusr
-do
-echo
-addgroup $lineusr $gname
-done < usrpam.txt
-
-rm usrpam.txt
+AddGrp
 
 pamline=$(cat /etc/pam.d/su | grep group=$gname | cut -f 2 -d=)
 
@@ -799,6 +778,33 @@ echo
 sleep 3
 NewHlPKG
 fi
+}
+
+AddGrp(){
+echo
+echo -n  "Digite um nome para o grupo: "
+read gname
+fgroup=$(cat /etc/group | cut -f 1 -d: | grep $gname | wc -l)
+
+if [ $fgroup -eq 0 ]
+then
+    groupadd $gname
+    echo
+    echo  "O grupo $gname foi inserido com sucesso!"
+else
+    echo
+    echo "O grupo $gname já existe!"
+fi
+
+ls /home/ | grep -v lost+found > usrpam.txt
+
+while read lineusr
+do
+echo
+addgroup $lineusr $gname
+done < usrpam.txt
+
+rm usrpam.txt
 }
 
 GNSSH() {
