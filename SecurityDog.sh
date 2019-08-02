@@ -135,7 +135,7 @@ echo "##########################################################################
 DisTermRoot
 echo
 echo "############################################################################"
-echo "###    Desabilitando Shell de usuários/serviços que não fazen login      ###"
+echo "###    Desabilitando shell de usuários/serviços que não fazen login      ###"
 echo "############################################################################"
 DisShell
 echo
@@ -145,7 +145,7 @@ echo "##########################################################################
 GrpPAM
 echo
 echo "############################################################################"
-echo "###                    Removendo Suid bit de comandos                    ###"
+echo "###                    Removendo suid bit de comandos                    ###"
 echo "############################################################################"
 DisSUID
 echo
@@ -165,7 +165,7 @@ echo "##########################################################################
 Fail2ban
 echo
 echo "############################################################################"
-echo "###           Rkhunter - Analisa o sistema em busca de Rootkits          ###"
+echo "###           Rkhunter - Analisa o sistema em busca de rootkits          ###"
 echo "############################################################################"
 Rkh
 echo
@@ -180,7 +180,7 @@ echo "##########################################################################
 RtID
 echo
 echo "############################################################################"
-echo "###                Protegendo Partições listadas em /etc/fstab           ###"
+echo "###                Protegendo partições listadas em /etc/fstab           ###"
 echo "############################################################################"
 EditFstab
 RtMenu
