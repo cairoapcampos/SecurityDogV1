@@ -885,9 +885,10 @@ then
     
     AddGrp
 
-    sshdgrp=$(cat /etc/ssh/sshd_config | grep AllowGroups | cut -f 2 -d" " | wc -l)
+    sshdgrpln=$(cat /etc/ssh/sshd_config | grep AllowGroups | cut -f 2 -d" " | wc -l)
+    sshdgrp=$(cat /etc/ssh/sshd_config | grep AllowGroups | cut -f 2 -d" ")
 
-      if [ $sshdgrp -eq 0 ]
+      if [ $sshdgrpln -eq 0 ]
       then
           echo " " >> /etc/ssh/sshd_config
           echo "# Additional Settings" >> /etc/ssh/sshd_config
