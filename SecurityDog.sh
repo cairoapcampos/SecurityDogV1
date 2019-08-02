@@ -708,7 +708,7 @@ sleep 3
 ### Funções especificas ###
 ###########################
 
-InstallOthPKGS(){
+InstallOthPKGSRT(){
 
 echo
 echo -n "Você deseja instalar outro pacote? [s/n]: "
@@ -737,25 +737,25 @@ echo
 apt update && apt install -y debsecan fail2ban htop rkhunter
 }
 
-InstallDebsecan() {
+InstallDebsecanRT() {
 echo
 apt update && apt install -y debsecan
 InstallOthPKGS
 }
 
-InstallF2B() {
+InstallF2BRT() {
 echo
 apt update && apt install -y fail2ban
 InstallOthPKGS
 }
 
-InstallRkh() {
+InstallRkhRT() {
 echo
 apt update && apt install -y rkhunter
 InstallOthPKGS
 }
 
-InstallHtop() {
+InstallHtopRT() {
 echo
 apt update && apt install -y htop
 InstallOthPKGS
@@ -1085,6 +1085,10 @@ fi
 ### Fuções com retorno para o menu principal  ###
 #################################################
 
+##############
+### RtMenu ###
+##############
+
 RtMenu(){
 echo
 echo "Retornando para o menu principal em 5 segundos..."
@@ -1166,6 +1170,57 @@ RtMenu
 EditFstabRT() {
 EditFstab
 RtMenu
+}
+
+########################
+### InstallOthPKGSRT ###
+########################
+
+InstallOthPKGSRT(){
+
+echo
+echo -n "Você deseja instalar outro pacote? [s/n]: "
+read othpkg
+
+if [ $othpkg = "s" ]
+then
+PKGS
+elif [ $othpkg = "n" ]
+then
+    echo
+    echo "Retornando para o menu principal... "
+    sleep 3
+    menu  
+else
+    echo
+    echo "Opção errada!"
+    sleep 3
+    PKGS
+fi
+}
+
+InstallDebsecanRT() {
+echo
+apt update && apt install -y debsecan
+InstallOthPKGSRT
+}
+
+InstallF2BRT() {
+echo
+apt update && apt install -y fail2ban
+InstallOthPKGSRT
+}
+
+InstallRkhRT() {
+echo
+apt update && apt install -y rkhunter
+InstallOthPKGSRT
+}
+
+InstallHtopRT() {
+echo
+apt update && apt install -y htop
+InstallOthPKGSRT
 }
 
 menu
