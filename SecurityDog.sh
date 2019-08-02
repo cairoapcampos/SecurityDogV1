@@ -333,6 +333,7 @@ ctty=$(echo "#tty$i")
 sed -i "/$ntty/{ s/$ntty/$ctty/;:a;n;ba }" /etc/securetty
 done
 echo "Terminais desabilitados (tty1 à tty12) para o login do Root! "
+sleep 3
 }
 
 ## 7. Remover shell válidas de usuarios que não precisam fazer login ##
@@ -367,12 +368,14 @@ then
    do
    usermod -s /bin/false $line2
    echo "Shell removida de: $line2" | tee -a Reports/UserShells_$dts.txt
+   sleep 3
    echo
    done < gnusr.txt
 
 else
    echo
    echo "Não há usuários com shells mal configuradas!" | tee Reports/UserShells_$dts.txt
+   sleep 3
 fi
 
 rm gnusr.txt vldusr.txt
