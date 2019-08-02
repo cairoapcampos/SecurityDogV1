@@ -186,12 +186,11 @@ EditFstab
 RtMenu
 }
 
-
-## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
-
 #######################################################################################
 ###  Fuções sem retorno para o menu principal usadas pela a função StartAllOptions  ###
 #######################################################################################
+
+## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 
 PKGS2() {
    echo
@@ -714,6 +713,8 @@ InstallAllPKGS() {
 echo
 apt update && apt install -y debsecan fail2ban htop rkhunter
 }
+
+### 
 
 PKGS() {
    echo
