@@ -1093,6 +1093,7 @@ FSTReboot() {
        echo
        echo "Bye bye!"
        sleep 5
+       echo
        shutdown -r now
    elif [ $rbtpc = "n" ]
    then
