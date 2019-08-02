@@ -382,16 +382,21 @@ GrpPAM() {
 
 AddGrp
 
-pamline=$(cat /etc/pam.d/su | grep group=$gname | cut -f 2 -d=)
+pamline=$(cat /etc/pam.d/su | grep "# auth       required   pam_wheel.so" | grep -v group=nosu | wc -l)
 
-if [ -z $pamline ]
+if [ $pamline -eq 1 ]
 then
     sed -i "/#.*pam_wheel.so/{ s/#.*pam_wheel.so/auth required pam_wheel.so group=$gname/;:a;n;ba }" /etc/pam.d/su
     echo
     echo "O grupo $gname foi habilitado para usar o su!"
 else
-    echo
-    echo "O grupo $gname já está configurado para usar o su!"
+     
+     vlgrpln=$(cat /etc/pam.d/su.old | grep "auth required pam_wheel.so group=")
+     vlgrp=$(cat /etc/pam.d/su.old | grep "auth required pam_wheel.so group=" | cut -d= -f2)
+     
+     sed -i "s/$vlgrpln/auth required pam_wheel.so group=$gname/" /etc/ssh/sshd_config
+     echo
+     echo "O grupo foi alterado de $vlgrp para $gname!"
 fi
 
 sed -i -r 's/^#(.*SULOG_FILE.*)$/\1/' /etc/login.defs
