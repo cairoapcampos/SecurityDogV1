@@ -702,9 +702,7 @@ c=$(echo "$line" | awk '{print $3}')
    fi
 done < clFstab.txt
 
-echo
-echo "Reinicie a máquina para que o arquivo /etc/fstab seja recarregado!"
-sleep 3
+FSTReboot
 
 }
 
@@ -1081,6 +1079,32 @@ echo
 sleep 3
 CPBANNER
 fi
+}
+
+FSTReboot() {
+   echo
+   echo "Você precisa reiniciar a máquina para que o arquivo /etc/fstab seja recarregado!"
+   echo
+   echo -n "Reiniciar agora? [s/n]: "
+   read rbtpc
+   
+   if [ $rbtpc = "s" ]
+   then
+       echo
+       echo "Bye bye!"
+       sleep 5
+       shutdown -r now
+   elif [ $rbtpc = "n" ]
+   then
+       echo
+       echo "Ok. A máquina não será reiniciada agora!"
+       sleep 3
+   else
+       echo
+       echo "Opção errada!"
+       sleep 3
+       FSTReboot
+   fi
 }
 
 #################################################
