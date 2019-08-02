@@ -391,10 +391,10 @@ then
     echo "O grupo $gname foi habilitado para usar o su!"
 else
      
-     vlgrpln=$(cat /etc/pam.d/su.old | grep "auth required pam_wheel.so group=")
-     vlgrp=$(cat /etc/pam.d/su.old | grep "auth required pam_wheel.so group=" | cut -d= -f2)
+     vlgrpln=$(cat /etc/pam.d/su | grep "auth required pam_wheel.so group=")
+     vlgrp=$(cat /etc/pam.d/su | grep "auth required pam_wheel.so group=" | cut -d= -f2)
      
-     sed -i "s/$vlgrpln/auth required pam_wheel.so group=$gname/" /etc/ssh/sshd_config
+     sed -i "s/$vlgrpln/auth required pam_wheel.so group=$gname/" /etc/pam.d/su
      echo
      echo "O grupo foi alterado de $vlgrp para $gname!"
 fi
