@@ -52,7 +52,7 @@ adduser hal.jordan
 `./SecurityDog.sh`
 
 
-### Dica de uso
+### Instalação de novos pacotes após o hardening
 
 1. Para poder instalar e desinstalar pacotes no sistema usando os comando apt-get, apt e aptitude, as pastas `/var` e `\tmp` precisam ser remontadas com permissão de execução.
 
