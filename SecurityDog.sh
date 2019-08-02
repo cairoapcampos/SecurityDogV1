@@ -236,7 +236,7 @@ then
     echo "Instalando pacote... "
     sleep 3
     apt update && apt install -y debsecan
-    clear
+    #clear
     UpdatePKG
 else
     CronRule
@@ -486,7 +486,7 @@ then
     echo "Instalando pacote... "
     sleep 3
     apt update && apt install -y fail2ban
-    clear
+    #clear
     Fail2ban
 else
 
@@ -585,7 +585,7 @@ then
     echo "Instalando pacote... "
     sleep 3
     apt update && apt install -y rkhunter
-    clear
+    #clear
     Rkh
 else
     sed -i 's/UPDATE_MIRRORS=0/UPDATE_MIRRORS=1/' /etc/rkhunter.conf
