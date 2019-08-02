@@ -4,7 +4,7 @@
 ###  3 - Update packages with vulnerabilities                             ###
 ###  4 - Disable CTRL + ALT + DEL                                         ###
 ###  5 - Set logout time for inactive terminal                            ###
-###  6 - Disable root login on the physical terminal                      ###
+###  6 - Disable terminals to prevent Root login                          ###
 ###  7 - Disable Shell from users/services that do not login              ###
 ###  8 - Enable group that can use su command                             ###
 ###  9 - Remove "Suid bit" from the commands                              ###
