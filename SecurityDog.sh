@@ -455,7 +455,7 @@ sleep 3
 sed  -i "s/session    optional     pam_mail.so/#session    optional     pam_mail.so/" /etc/pam.d/sshd
 echo
 echo "Habilitando no arquivo /etc/ssh/sshd_config o issue.net... "
-sleep
+sleep 3
 sed -i 's/#Banner.*none/Banner \/etc\/issue.net/' /etc/ssh/sshd_config
 echo
 echo "Desabilitando no arquivo /etc/ssh/sshd_config a mensagem de último login... "
