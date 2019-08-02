@@ -877,48 +877,26 @@ read opgpssh
 
 if [ $opgpssh = "s" ]
 then
-    echo
-    echo -n  "Digite um nome para o grupo que poderá logar no ssh: "
-    read sshgname
-    fsshgrp=$(cat /etc/group | cut -f 1 -d: | grep $sshgname)
     
-    if [ -z $fsshgrp ]
-    then
-        groupadd $sshgname
-        echo
-        echo  "O grupo $sshgname foi inserido com sucesso!"
-     else
-        echo
-        echo "O grupo $sshgname já existe!"
-     fi
+    AddGrp
 
-     ls /home/ | grep -v lost+found > usrssh.txt
+    sshdgrp=$(cat /etc/ssh/sshd_config | grep AllowGroups | cut -f 2 -d" " | wc -l)
 
-      while read lineusrssh
-      do
-      echo
-      addgroup $lineusrssh $sshgname
-      done < usrssh.txt
-
-      rm usrssh.txt
-
-      sshdgrp=$(cat /etc/ssh/sshd_config | grep AllowGroups | cut -f 2 -d" ")
-
-      if [ -z $sshdgrp ]
+      if [ $sshdgrp -eq 0 ]
       then
           echo " " >> /etc/ssh/sshd_config
           echo "# Additional Settings" >> /etc/ssh/sshd_config
-          echo "AllowGroups $sshgname " >> /etc/ssh/sshd_config
+          echo "AllowGroups $gname " >> /etc/ssh/sshd_config
           echo
-          echo "O grupo $sshgname foi habilitado para usar o ssh!"
-       elif [ $sshdgrp = $sshgname ]
+          echo "O grupo $gname foi habilitado para usar o ssh!"
+       elif [ $sshdgrp = $gname ]
        then
            echo
-           echo "O grupo $sshgname já foi definido anteriormente!"
+           echo "O grupo $gname já foi definido anteriormente!"
        else  
            echo
-           sed -i "s/AllowGroups.*/AllowGroups $sshgname/" /etc/ssh/sshd_config
-           echo " O grupo $sshdgrp anteriormente habilitado para usar o ssh, foi subistituido por $sshgname!"
+           sed -i "s/AllowGroups.*/AllowGroups $gname/" /etc/ssh/sshd_config
+           echo " O grupo $sshdgrp anteriormente habilitado para usar o ssh, foi subistituido por $gname!"
        fi
 
 elif [ $opgpssh = "n" ]
