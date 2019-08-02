@@ -289,6 +289,7 @@ systemctl mask ctrl-alt-del.target
 systemctl daemon-reload
 echo
 echo "Reboot via teclas CTRL+ALT+DEL desativado com sucesso!"
+sleep 3
 }
 
 ## 5. Logout automático do terminal após quantidade de minutos de inatividade ##
@@ -311,15 +312,18 @@ then
     source /etc/profile
     echo
     echo "O tempo de $tmplgt minutos, foi definido com sucesso!"
+    sleep 3
 elif [ $segtmft = $calctmp ]
 then
     echo
     echo "O Tempo de logout é o mesmo já definido!"
+    sleep 3
 else
     echo
     sed -i "s/export TMOUT.*/export TMOUT=$calctmp/" /etc/profile
     mintmft=$((segtmft/60))
     echo "O Tempo de logout foi atualizado de $mintmft minutos para $tmplgt minutos"
+    sleep 3
 fi
 }
 
@@ -395,6 +399,7 @@ then
     sed -i "/#.*pam_wheel.so/{ s/#.*pam_wheel.so/auth required pam_wheel.so group=$gname/;:a;n;ba }" /etc/pam.d/su
     echo
     echo "O grupo $gname foi habilitado para usar o su!"
+    sleep 3
 else
      
      vlgrpln=$(cat /etc/pam.d/su | grep "auth required pam_wheel.so group=")
@@ -403,6 +408,7 @@ else
      sed -i "s/$vlgrpln/auth required pam_wheel.so group=$gname/" /etc/pam.d/su
      echo
      echo "O grupo foi alterado de $vlgrp para $gname!"
+     sleep 3
 fi
 
 sed -i -r 's/^#(.*SULOG_FILE.*)$/\1/' /etc/login.defs
@@ -416,6 +422,7 @@ sleep 5
 DisSUID() {
 echo
 echo "O Suid bit foi removido dos seguintes comandos: "
+sleep 3
 echo
 for sbcmd in $(find / -perm -4000 2> /dev/null | grep -v /bin/su | grep -v /usr/bin/passwd)
 do
@@ -444,15 +451,19 @@ sleep 5
 EdiMotdIssue() {
 echo
 echo "Desabilitando a mensagem de caixa de e-mail no login... "
+sleep 3
 sed  -i "s/session    optional     pam_mail.so/#session    optional     pam_mail.so/" /etc/pam.d/sshd
 echo
 echo "Habilitando no arquivo /etc/ssh/sshd_config o issue.net... "
+sleep
 sed -i 's/#Banner.*none/Banner \/etc\/issue.net/' /etc/ssh/sshd_config
 echo
 echo "Desabilitando no arquivo /etc/ssh/sshd_config a mensagem de último login... "
+sleep 3
 sed -i 's/#PrintLastLog yes/PrintLastLog no/' /etc/ssh/sshd_config
 echo
 echo "Desabilitando antigos arquivos do motd... "
+sleep 3
 chmod -x /etc/update-motd.d/10-uname
 mv /etc/update-motd.d/10-uname /etc/update-motd.d/10-uname.old
 mv /etc/motd /etc/motd.old
@@ -610,6 +621,7 @@ fi
 RmPKG() {
 echo
 echo "Removendo pacotes desnecessários: "
+sleep 3
 echo
 apt purge -y bluez bluetooth crda iw libiw30:amd64 wireless-regdb wireless-tools wpasupplicant 
 apt purge -y netcat-traditional telnet wget git
@@ -630,18 +642,22 @@ then
     echo "Existe mais de um usuário com o ID 0. Somente o Root pode ter esse ID!: "
     echo
     echo "Os usuários de ID's duplicados são: "
+    sleep 3
     echo
     echo "$userid"
     echo
     echo "Configuração em /etc/passwd: "
+    sleep 3
     echo
     echo "$infoid"
     sleep 3
 else
     echo
     echo "O usuário com o ID 0 é o: $userid"
+    sleep 3
     echo
     echo "Configuração em /etc/passwd: "
+    sleep 3
     echo
     echo "$infoid"
     sleep 3
@@ -699,6 +715,7 @@ c=$(echo "$line" | awk '{print $3}')
    sed -i 's/'"$a.*"'/'"$new_var_log"'/' /etc/fstab
    else
    echo "Partição Desconhecida!"
+   sleep 3
    fi
 done < clFstab.txt
 
