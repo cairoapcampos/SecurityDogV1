@@ -112,7 +112,7 @@ cat initial.txt
 echo "############################################################################"
 echo "###  Atualizando lista de pacotes e instala pacotes para o hardening  ###"
 echo "############################################################################"
-PKGS
+PKGS2
 echo
 echo "############################################################################"
 echo "###          Atualizando pacotes que possuem vulnerabilidades            ###"
@@ -192,6 +192,36 @@ RtMenu
 
 ## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 PKGS() {
+   echo
+   echo "#############################################################################"
+   echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
+   echo "#############################################################################"
+   echo "### 1 - Instalar todos os pacotes                                         ###"
+   echo "### 2 - Instalar Debsecan                                                 ###"
+   echo "### 3 - Instalar Fail2Ban                                                 ###"
+   echo "### 4 - Instalar Rkhunter                                                 ###"
+   echo "### 5 - Instalar Htop                                                     ###"
+   echo "### 0 - Retornar para o menu principal                                    ###"
+   echo "#############################################################################"
+   echo
+   echo -n "Escolha uma opção: "
+   read oppkgs
+   case $oppkgs in
+       1) InstallAllPKGS ;;
+       2) InstallDebsecanRT ;;
+       3) InstallF2BRT ;;
+       4) InstallRkhRT ;;
+       5) InstallHtopRT ;;
+       0) menu ;;
+       *) echo " "
+          echo "Opção Invalida! Retornando para o menu de pacotes..."
+          sleep 3
+          clear
+          PKGS ;;
+   esac
+}
+
+PKGS2() {
    echo
    echo "#############################################################################"
    echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
@@ -708,7 +738,7 @@ sleep 3
 ### Funções especificas ###
 ###########################
 
-InstallOthPKGSRT(){
+InstallOthPKGS(){
 
 echo
 echo -n "Você deseja instalar outro pacote? [s/n]: "
@@ -720,9 +750,8 @@ PKGS
 elif [ $othpkg = "n" ]
 then
     echo
-    echo "Retornando para o menu principal... "
-    sleep 3
-    menu  
+    echo "Ok. Nenhum outro pacote será instalado! "
+    sleep 3 
 else
     echo
     echo "Opção errada!"
@@ -731,31 +760,30 @@ else
 fi
 }
 
-
 InstallAllPKGS() {
 echo
 apt update && apt install -y debsecan fail2ban htop rkhunter
 }
 
-InstallDebsecanRT() {
+InstallDebsecan() {
 echo
 apt update && apt install -y debsecan
 InstallOthPKGS
 }
 
-InstallF2BRT() {
+InstallF2B() {
 echo
 apt update && apt install -y fail2ban
 InstallOthPKGS
 }
 
-InstallRkhRT() {
+InstallRkh() {
 echo
 apt update && apt install -y rkhunter
 InstallOthPKGS
 }
 
-InstallHtopRT() {
+InstallHtop() {
 echo
 apt update && apt install -y htop
 InstallOthPKGS
