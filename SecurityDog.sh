@@ -717,7 +717,7 @@ read othpkg
 
 if [ $othpkg = "s" ]
 then
-PKGS2
+PKGS
 elif [ $othpkg = "n" ]
 then
     echo
@@ -727,7 +727,7 @@ else
     echo
     echo "Opção errada!"
     sleep 3
-    PKGS2
+    PKGS
 fi
 }
 
