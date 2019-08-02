@@ -50,3 +50,19 @@ adduser hal.jordan
 6. Rodar o script `SecurityDog.sh`:
 
 `./SecurityDog.sh`
+
+
+### Dica de uso
+
+1. Para poder instalar e desinstalar pacotes no sistema usando os comando apt-get, apt e aptitude, as pastas `/var` e `\tmp` precisam ser remontadas com permissão de execução.
+
+```
+mount -o remount,rw,exec /var
+mount -o remount,rw,exec /tmp
+```
+2. Após a instalação dos pacotes, as pastas precisam novamente serem remontadas com permissão de não execução.
+
+```
+mount -o remount,rw,noexec /var
+mount -o remount,rw,noexec /tmp
+```
