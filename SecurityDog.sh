@@ -756,6 +756,33 @@ else
 fi
 }
 
+NoExecPKGS(){
+
+mntvar=$(mount | grep /var | grep -v /var/log | cut -d, -f4)
+mnttmp=$(mount | grep /tmp | cut -d, -f4)
+
+if [ $mntvar != "noexec" ] && [ $mnttmp != "noexec" ]
+then
+    echo
+    echo "Partições /var e /tmp não estão protegidas contra execução!"
+    sleep 3
+    echo
+    echo "Desabilitando a permissão de execução das partições para impedir a execução de scripts e binários..."
+    sleep 3
+    mount -o remount,rw,noexec /var
+    mount -o remount,rw,noexec /tmp
+    echo
+    echo "Permissão de execução desabilitada!"
+    sleep 3
+    echo
+else
+    echo
+    echo "As partições /var e /tmp já estam com as permissões de execução desabilitadas!"
+    sleep 3
+    echo
+fi
+}
+
 InstallOthPKGS(){
 
 echo
