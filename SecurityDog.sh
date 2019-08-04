@@ -109,6 +109,7 @@ menu() {
 StartAllOptions() {
 clear
 cat initial.txt
+ExecPKGS
 echo "############################################################################"
 echo "###  Atualizando lista de pacotes e instala pacotes para o hardening     ###"
 echo "############################################################################"
@@ -727,6 +728,33 @@ FSTReboot
 ###########################
 ### Funções especificas ###
 ###########################
+
+ExecPKGS(){
+
+mntvar=$(mount | grep /var | grep -v /var/log | cut -d, -f4)
+mnttmp=$(mount | grep /tmp | cut -d, -f4)
+
+if [ $mntvar = "noexec" ] && [ $mnttmp = "noexec" ]
+then
+    echo
+    echo "Partições /var e /tmp protegidas contra execução!"
+    sleep 3
+    echo
+    echo "Habilitando a permissão de execução nas partições para a instalação de pacotes..."
+    sleep 3
+    mount -o remount,rw,exec /var
+    mount -o remount,rw,exec /tmp
+    echo
+    echo "Permissão de execução habilitada!"
+    sleep 3
+    echo
+else
+    echo
+    echo "As partições /var e /tmp já possuem permissões de execução para a instalação de pacotes!"
+    sleep 3
+    echo
+fi
+}
 
 InstallOthPKGS(){
 
