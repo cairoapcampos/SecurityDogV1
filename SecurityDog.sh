@@ -228,6 +228,8 @@ PKGS() {
 ## 3. Atualiza pacotes e agenda tarefa de atualização no Cron ##
 UpdatePKG() {
 
+ExecPKGS
+
 findbin=$(which debsecan | wc -l)
 
 if [ $findbin -eq 0 ]
@@ -283,6 +285,8 @@ else
          sleep 3
      fi
 fi
+
+NoExecPKGS
 }
 
 ## 4. Desabilitar CTRL+ALT+DEL ##
@@ -478,6 +482,8 @@ CPBANNER
 ## 12. Configuração do Fail2ban ##
 Fail2ban() {
 
+ExecPKGS
+
 findbin2=$(which fail2ban-server | wc -l)
 
 if [ $findbin2 -eq 0 ]
@@ -572,10 +578,14 @@ else
        Fail2ban
    fi
 fi
+
+NoExecPKGS
 }
 
 ## 13. Instala, configura e executa o Rkhunter ##
 Rkh() {
+
+ExecPKGS
 
 findbin3=$(which rkhunter | wc -l)
 
@@ -619,6 +629,8 @@ else
     echo
     rkhunter --check --sk
 fi
+
+NoExecPKGS
 }
 
 ## 14. Remove pacotes desnecessários da instalação padrão  ##
