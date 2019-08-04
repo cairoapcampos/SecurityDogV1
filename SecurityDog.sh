@@ -745,11 +745,16 @@ FSTReboot
 
 ExecPKGS(){
 
-mntvar=$(mount | grep /var | grep -v /var/log | cut -d, -f4)
-mnttmp=$(mount | grep /tmp | cut -d, -f4)
+cmntvar=$(mount | grep /var | grep -v /var/log | grep noexec | wc -l)
+cmnttmp=$(mount | grep /tmp | grep noexec | wc -l)
 
-if [ $mntvar = "noexec" ] && [ $mnttmp = "noexec" ]
+if [ $cmntvar -eq 0 ] && [ $cmnttmp -eq 0 ]
 then
+    echo
+    echo "As partições /var e /tmp já possuem permissões de execução para a instalação de pacotes!"
+    sleep 3
+    echo
+ else
     echo
     echo "Partições /var e /tmp protegidas contra execução!"
     sleep 3
@@ -761,22 +766,21 @@ then
     echo
     echo "Permissão de execução habilitada!"
     sleep 3
-    echo
-else
-    echo
-    echo "As partições /var e /tmp já possuem permissões de execução para a instalação de pacotes!"
-    sleep 3
-    echo
 fi
 }
 
 NoExecPKGS(){
 
-mntvar=$(mount | grep /var | grep -v /var/log | cut -d, -f4)
-mnttmp=$(mount | grep /tmp | cut -d, -f4)
+cmntvar=$(mount | grep /var | grep -v /var/log | grep noexec | wc -l)
+cmnttmp=$(mount | grep /tmp | grep noexec | wc -l)
 
-if [ $mntvar != "noexec" ] && [ $mnttmp != "noexec" ]
+if [ $cmntvar -eq 1 ] && [ $cmnttmp -eq 1 ]
 then
+    echo
+    echo "As partições /var e /tmp já estam com as permissões de execução desabilitadas!"
+    sleep 3
+    echo  
+else
     echo
     echo "Partições /var e /tmp não estão protegidas contra execução!"
     sleep 3
@@ -788,12 +792,7 @@ then
     echo
     echo "Permissão de execução desabilitada!"
     sleep 3
-    echo
-else
-    echo
-    echo "As partições /var e /tmp já estam com as permissões de execução desabilitadas!"
-    sleep 3
-    echo
+    echo  
 fi
 }
 
