@@ -109,7 +109,6 @@ menu() {
 StartAllOptions() {
 clear
 cat initial.txt
-ExecPKGS
 echo "############################################################################"
 echo "###  Atualizando lista de pacotes e instala pacotes para o hardening     ###"
 echo "############################################################################"
@@ -194,7 +193,6 @@ RtMenu
 ## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 
 PKGS() {
-   ExecPKGS
    echo
    echo "#############################################################################"
    echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
@@ -222,13 +220,10 @@ PKGS() {
           clear
           PKGS ;;
    esac
-   NoExecPKGS
 }
 
 ## 3. Atualiza pacotes e agenda tarefa de atualização no Cron ##
 UpdatePKG() {
-
-ExecPKGS
 
 findbin=$(which debsecan | wc -l)
 
@@ -286,7 +281,6 @@ else
      fi
 fi
 
-NoExecPKGS
 }
 
 ## 4. Desabilitar CTRL+ALT+DEL ##
@@ -482,8 +476,6 @@ CPBANNER
 ## 12. Configuração do Fail2ban ##
 Fail2ban() {
 
-ExecPKGS
-
 findbin2=$(which fail2ban-server | wc -l)
 
 if [ $findbin2 -eq 0 ]
@@ -579,13 +571,10 @@ else
    fi
 fi
 
-NoExecPKGS
 }
 
 ## 13. Instala, configura e executa o Rkhunter ##
 Rkh() {
-
-ExecPKGS
 
 findbin3=$(which rkhunter | wc -l)
 
@@ -630,7 +619,6 @@ else
     rkhunter --check --sk
 fi
 
-NoExecPKGS
 }
 
 ## 14. Remove pacotes desnecessários da instalação padrão  ##
