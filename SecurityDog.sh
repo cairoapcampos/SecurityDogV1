@@ -8,13 +8,7 @@
 
 clear
 
-if [ "$USER" != "root" ]
-then
-      echo
-      echo "Permission denied! Please become Root to run SecurityDog."
-      echo
-      exit
-fi
+vroot
 
 clear
 
@@ -697,6 +691,17 @@ FSTReboot
 ###########################
 ### Funções especificas ###
 ###########################
+
+vroot(){
+
+if [ "$USER" != "root" ]
+then
+      echo
+      echo "Permissão negada! Por favor execute SecurityDog como root."
+      echo
+      exit
+fi
+}
 
 ExecPKGS(){
 
