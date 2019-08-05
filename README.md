@@ -60,7 +60,6 @@ adduser hal.jordan
 * Uma nova execução do script afim de alterar alguma configuração realizada anteriormente.
 
 **Obs: As opções de hardening 1, 2, 3, 12, 13 e 14 necessitam de permissão de execução nestas partições.**
-<span style="color:orange;">Word up</span>
 
 Comandos para remontar as partições com permissão de execução:
 
