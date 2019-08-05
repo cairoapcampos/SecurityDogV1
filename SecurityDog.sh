@@ -697,59 +697,6 @@ FSTReboot
 ### Funções especificas ###
 ###########################
 
-ExecPKGS(){
-
-cmntvar=$(mount | grep /var | grep -v /var/log | grep noexec | wc -l)
-cmnttmp=$(mount | grep /tmp | grep noexec | wc -l)
-
-if [ $cmntvar -eq 0 ] && [ $cmnttmp -eq 0 ]
-then
-    echo
-    echo "As partições /var e /tmp já possuem permissões de execução para a instalação de pacotes!"
-    sleep 5
-    echo
- else
-    echo
-    echo "Partições /var e /tmp protegidas contra execução!"
-    sleep 5
-    echo
-    echo "Habilitando a permissão de execução nas partições para a instalação de pacotes..."
-    sleep 5
-    mount -o remount,rw,exec /var
-    mount -o remount,rw,exec /tmp
-    echo
-    echo "Permissão de execução habilitada!"
-    sleep 5
-fi
-}
-
-NoExecPKGS(){
-
-cmntvar=$(mount | grep /var | grep -v /var/log | grep noexec | wc -l)
-cmnttmp=$(mount | grep /tmp | grep noexec | wc -l)
-
-if [ $cmntvar -eq 1 ] && [ $cmnttmp -eq 1 ]
-then
-    echo
-    echo "As partições /var e /tmp já estam com as permissões de execução desabilitadas!"
-    sleep 3
-    echo  
-else
-    echo
-    echo "Partições /var e /tmp não estão protegidas contra execução!"
-    sleep 3
-    echo
-    echo "Desabilitando a permissão de execução das partições para impedir a execução de scripts e binários..."
-    sleep 3
-    mount -o remount,rw,noexec /var
-    mount -o remount,rw,noexec /tmp
-    echo
-    echo "Permissão de execução desabilitada!"
-    sleep 3
-    echo  
-fi
-}
-
 InstallOthPKGS(){
 
 echo
