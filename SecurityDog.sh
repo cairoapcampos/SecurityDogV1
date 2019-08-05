@@ -7,7 +7,15 @@
 ######################################################
 
 clear
-vroot
+
+if [ "$USER" != "root" ]
+then
+      echo
+      echo "Permissão negada! Por favor execute SecurityDog como root."
+      echo
+      exit
+fi
+
 clear
 
 ## Menu de escolha de funções de hardening ##
@@ -689,17 +697,6 @@ FSTReboot
 ###########################
 ### Funções especificas ###
 ###########################
-
-vroot(){
-
-if [ "$USER" != "root" ]
-then
-      echo
-      echo "Permissão negada! Por favor execute SecurityDog como root."
-      echo
-      exit
-fi
-}
 
 ExecPKGS(){
 
