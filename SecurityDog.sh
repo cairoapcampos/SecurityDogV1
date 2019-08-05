@@ -16,67 +16,34 @@ then
       exit
 fi
 
-## Menu de escolha de idioma ##
-menulang() {
-   cat initial.txt
-   echo "#############################################################################"
-   echo "######                      Languages Options                          ######"
-   echo "#############################################################################"
-   echo "###  1 - Português                                                        ###"
-   echo "###  2 - English                                                          ###"
-   echo "#############################################################################"
-   echo " "
-   echo -n "Choose one of the options above: "
-   read oplang
-   case $oplang in
-       1) file="lang_pt-BR.lang" ;;
-       2) file="lang_eng.lang" ;;
-       *) echo
-          echo "Option Invalid! Returning to Menu ..."
-          sleep 3
-          clear
-          menulang ;;
-   esac
-}
-
-menulang
-
-menuline=(  )
-
-while read line
-do
-menuline[$n]=$line
-n=$((n+1))
-done < $file
-
 clear
 
 ## Menu de escolha de funções de hardening ##
 menu() {
    cat initial.txt
    echo "#############################################################################"
-   echo "${menuline[0]}"
+   echo "######                       Opções de Hardening                       ######"
    echo "#############################################################################"
-   echo "${menuline[1]}"
-   echo "${menuline[2]}"
-   echo "${menuline[3]}"
-   echo "${menuline[4]}"
-   echo "${menuline[5]}"
-   echo "${menuline[6]}"
-   echo "${menuline[7]}"
-   echo "${menuline[8]}"
-   echo "${menuline[9]}"
-   echo "${menuline[10]}"
-   echo "${menuline[11]}"
-   echo "${menuline[12]}"
-   echo "${menuline[13]}"
-   echo "${menuline[14]}"
-   echo "${menuline[15]}"
-   echo "${menuline[16]}"
-   echo "${menuline[17]}"
+   echo "###  1 - Iniciar todas as configurações                                   ###"
+   echo "###  2 - Atualizar lista de pacotes e instalar pacotes para o hardening   ###"
+   echo "###  3 - Atualizar pacotes que possuem vulnerabilidades                   ###"
+   echo "###  4 - Desabilitar CTRL + ALT + DEL                                     ###"
+   echo "###  5 - Habilitar tempo de logout para terminal ocioso                   ###"
+   echo "###  6 - Desabilitar terminais para impedir o login de Root               ###"
+   echo "###  7 - Desabilitar Shell de usuários/serviços que não fazem login       ###"
+   echo "###  8 - Habilitar grupo que pode usar o comando su                       ###"
+   echo "###  9 - Remover Suid bit de comandos                                     ###"
+   echo "###  10 - Configurar SSH                                                  ###"
+   echo "###  11 - Configuração de Banner                                          ###"
+   echo "###  12 - Configurar Fail2ban                                             ###"
+   echo "###  13 - Analisar o sistema em busca de Rootkits                         ###"
+   echo "###  14 - Remover pacotes desnecessários                                  ###"
+   echo "###  15 - Verificar duplicidade de ID do Root                             ###"
+   echo "###  16 - Proteger partições listadas em /etc/fstab                       ###"
+   echo "###  0 - Sair                                                             ###"
    echo "#############################################################################"
    echo
-   echo -n "${menuline[18]}"
+   echo -n "Escolha uma das opções acima: "
    read opmenu
    case $opmenu in
        1) StartAllOptions ;;
