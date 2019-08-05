@@ -54,13 +54,20 @@ adduser hal.jordan
 
 ### Instalação de novos pacotes após o hardening
 
-1. Para poder instalar e desinstalar pacotes no sistema usando os comando apt-get, apt e aptitude, as pastas `/var` e `\tmp` precisam ser remontadas com permissão de execução.
+1. Para os casos seguintes será necesssário que as pastas `/var` e `\tmp` sejam remontadas com permissão de execução.
+
+* Instalar e desinstalar pacotes no sistema usando os comando apt-get, apt e aptitude;
+* Alterar algumas opções do hardening, em uma segunda execução do script.
+
+Comandos para remontar as pastas com permissão de execução:
 
 ```
 mount -o remount,rw,exec /var
 mount -o remount,rw,exec /tmp
 ```
-2. Após a instalação dos pacotes, as pastas precisam novamente serem remontadas com permissão de não execução.
+2. Após a instalação dos pacotes ou nova execução do script, as pastas precisam novamente serem remontadas com permissão de não execução.
+
+Comandos para remontar as pastas com permissão de não execução:
 
 ```
 mount -o remount,rw,noexec /var
