@@ -159,6 +159,7 @@ RtMenu
 ## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 
 PKGS() {
+   ExecPKGS
    echo
    echo "#############################################################################"
    echo "######     Escolha de pacotes a serem instalados para o Hardening      ######"
@@ -179,13 +180,16 @@ PKGS() {
        3) InstallF2B ;;
        4) InstallRkh ;;
        5) InstallHtop ;;
-       0) menu ;;
+       0) NoExecPKGS
+          menu ;;
        *) echo " "
           echo "Opção Invalida! Retornando para o menu de pacotes..."
           sleep 3
           clear
           PKGS ;;
    esac
+   
+  NoExecPKGS
 }
 
 ## 3. Atualiza pacotes e agenda tarefa de atualização no Cron ##
