@@ -16,8 +16,6 @@ then
       exit
 fi
 
-clear
-
 ## Menu de escolha de funções de hardening ##
 menu() {
    cat initial.txt
