@@ -19,7 +19,7 @@ fi
 
 ## Menu de escolha de funções de hardening ##
 menu() {
-   cat initial.txt
+   cat logo.txt
    echo "#############################################################################"
    echo "######                       Opções de Hardening                       ######"
    echo "#############################################################################"
