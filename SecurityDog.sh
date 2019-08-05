@@ -8,6 +8,7 @@
 
 clear
 
+## Verifica se o usuário que executou o script é root
 if [ "$USER" != "root" ]
 then
       echo
