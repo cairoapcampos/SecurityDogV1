@@ -54,12 +54,14 @@ adduser hal.jordan
 
 ### Instalação de novos pacotes após o hardening
 
-1. Para os casos seguintes será necesssário que as pastas `/var` e `\tmp` sejam remontadas com permissão de execução.
+1. Para os casos seguintes será necesssário que as pastas `/var` e `/tmp` sejam remontadas com permissão de execução:
 
 * Instalar e desinstalar pacotes no sistema usando os comando apt-get, apt e aptitude;
-* Alterar algumas opções do hardening, em uma segunda execução do script.
+* Uma nova execução do script afim de alterar alguma configuração realizada anteriormente.
 
-Comandos para remontar as pastas com permissão de execução:
+**Obs: As opções de hardening 1,2,3,12,13 e 14 necessitam de permissão de execução nestas partições.
+
+** Comandos para remontar as pastas com permissão de execução:
 
 ```
 mount -o remount,rw,exec /var
