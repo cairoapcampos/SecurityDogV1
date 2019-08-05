@@ -7,9 +7,7 @@
 ######################################################
 
 clear
-
 vroot
-
 clear
 
 ## Menu de escolha de funções de hardening ##
@@ -712,20 +710,20 @@ if [ $cmntvar -eq 0 ] && [ $cmnttmp -eq 0 ]
 then
     echo
     echo "As partições /var e /tmp já possuem permissões de execução para a instalação de pacotes!"
-    sleep 3
+    sleep 5
     echo
  else
     echo
     echo "Partições /var e /tmp protegidas contra execução!"
-    sleep 3
+    sleep 5
     echo
     echo "Habilitando a permissão de execução nas partições para a instalação de pacotes..."
-    sleep 3
+    sleep 5
     mount -o remount,rw,exec /var
     mount -o remount,rw,exec /tmp
     echo
     echo "Permissão de execução habilitada!"
-    sleep 3
+    sleep 5
 fi
 }
 
