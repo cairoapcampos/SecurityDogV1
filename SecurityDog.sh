@@ -74,7 +74,7 @@ menu() {
 # 1. Inicia todas as opções
 StartAllOptions() {
 clear
-cat initial.txt
+cat logo.txt
 echo "############################################################################"
 echo "###  Atualizando lista de pacotes e instala pacotes para o hardening     ###"
 echo "############################################################################"
