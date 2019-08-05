@@ -61,7 +61,7 @@ adduser hal.jordan
 
 **Obs: As opções de hardening 1, 2, 3, 12, 13 e 14 necessitam de permissão de execução nestas partições.**
 
-Comandos para remontar as pastas com permissão de execução:
+Comandos para remontar as partições com permissão de execução:
 
 ```
 mount -o remount,rw,exec /var
@@ -69,7 +69,7 @@ mount -o remount,rw,exec /tmp
 ```
 2. Após a instalação dos pacotes ou nova execução do script, as pastas precisam novamente serem remontadas com permissão de não execução.
 
-Comandos para remontar as pastas com permissão de não execução:
+Comandos para remontar as partições com permissão de não execução:
 
 ```
 mount -o remount,rw,noexec /var
