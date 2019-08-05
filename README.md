@@ -59,7 +59,8 @@ adduser hal.jordan
 * Instalar e desinstalar pacotes no sistema usando os comando apt-get, apt e aptitude;
 * Uma nova execução do script afim de alterar alguma configuração realizada anteriormente.
 
-{c:red}**Obs: As opções de hardening 1, 2, 3, 12, 13 e 14 necessitam de permissão de execução nestas partições.**{/c} 
+**Obs: As opções de hardening 1, 2, 3, 12, 13 e 14 necessitam de permissão de execução nestas partições.**
+<span style="color:orange;">Word up</span>
 
 Comandos para remontar as partições com permissão de execução:
 
