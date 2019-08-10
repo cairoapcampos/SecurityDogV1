@@ -18,7 +18,7 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo com os serviços que serão utilizados.
 
-4. Na janela de `Seleção de software` marcar apenas as opções `servidor ssh` e `utilitários de sistema padrão`.
+4. Na janela de `Seleção de software` marcar apenas as opções `servidor ssh` caso esta opção seja necessária.
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img3.png)
 
