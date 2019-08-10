@@ -71,92 +71,11 @@ menu() {
 
 }
 
-# 1. Inicia todas as opções
-StartAllOptions() {
-clear
-cat logo.txt
-echo "############################################################################"
-echo "###  Atualizando lista de pacotes e instala pacotes para o hardening     ###"
-echo "############################################################################"
-PKGS
-echo
-echo "############################################################################"
-echo "###          Atualizando pacotes que possuem vulnerabilidades            ###"
-echo "############################################################################"
-UpdatePKG
-echo
-echo "############################################################################"
-echo "###                 Desabilitando CTRL + ALT + DEL                       ###"
-echo "############################################################################"
-DisKeys
-echo
-echo "############################################################################"
-echo "###          Habilitando tempo de logout para terminal ocioso            ###"
-echo "############################################################################"
-LgtTerm
-echo
-echo "############################################################################"
-echo "###             Desabilitando login do Root no terminal físico           ###"
-echo "############################################################################"
-DisTermRoot
-echo
-echo "############################################################################"
-echo "###    Desabilitando shell de usuários/serviços que não fazen login      ###"
-echo "############################################################################"
-DisShell
-echo
-echo "############################################################################"
-echo "###              Habilitando grupo que pode usar o comando su            ###"
-echo "############################################################################"
-GrpPAM
-echo
-echo "############################################################################"
-echo "###                    Removendo suid bit de comandos                    ###"
-echo "############################################################################"
-DisSUID
-echo
-echo "############################################################################"
-echo "###                          Configurando SSH                            ###"
-echo "############################################################################"
-ConfigSSH
-echo
-echo "############################################################################"
-echo "###                          Configurando Banner                         ###"
-echo "############################################################################"
-EdiMotdIssue
-echo
-echo "############################################################################"
-echo "###                          Configurando o Fail2ban                     ###"
-echo "############################################################################"
-Fail2ban
-echo
-echo "############################################################################"
-echo "###           Rkhunter - Analisa o sistema em busca de rootkits          ###"
-echo "############################################################################"
-Rkh
-echo
-echo "############################################################################"
-echo "###                    Removendo pacotes desnecessários                  ###"
-echo "############################################################################"
-RmPKG
-echo
-echo "############################################################################"
-echo "###                    Verificando duplicidade de ID do Root             ###"
-echo "############################################################################"
-RtID
-echo
-echo "############################################################################"
-echo "###                Protegendo partições listadas em /etc/fstab           ###"
-echo "############################################################################"
-EditFstab
-RtMenu
-}
-
 #######################################################################################
 ###  Fuções sem retorno para o menu principal usadas pela a função StartAllOptions  ###
 #######################################################################################
 
-## 2. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
+## 1. Atulizar lista de pacotes disponiveis e instala pacotes necessários para o harderning ##
 
 PKGS() {
    echo
@@ -188,7 +107,7 @@ PKGS() {
    esac
 }
 
-## 3. Atualiza pacotes e agenda tarefa de atualização no Cron ##
+## 2. Atualiza pacotes e agenda tarefa de atualização no Cron ##
 UpdatePKG() {
 
 findbin=$(which debsecan | wc -l)
@@ -249,7 +168,7 @@ fi
 
 }
 
-## 4. Desabilitar CTRL+ALT+DEL ##
+## 3. Desabilitar CTRL+ALT+DEL ##
 DisKeys() {
 echo
 systemctl mask ctrl-alt-del.target
@@ -259,7 +178,7 @@ echo "Reboot via teclas CTRL+ALT+DEL desativado com sucesso!"
 sleep 3
 }
 
-## 5. Logout automático do terminal após quantidade de minutos de inatividade ##
+## 4. Logout automático do terminal após quantidade de minutos de inatividade ##
 LgtTerm() {
 
 echo
@@ -294,7 +213,7 @@ else
 fi
 }
 
-## 6. Desabilita login direto do root nos terminais de texto (tty) do servidor ##
+## 5. Desabilita login direto do root nos terminais de texto (tty) do servidor ##
 DisTermRoot() {
 echo
 for i in $(seq 12);
@@ -307,7 +226,7 @@ echo "Terminais desabilitados (tty1 à tty12) para o login do Root! "
 sleep 3
 }
 
-## 7. Remover shell válidas de usuarios que não precisam fazer login ##
+## 6. Remover shell válidas de usuarios que não precisam fazer login ##
 DisShell() {
 
 cp /etc/passwd /etc/passwd.old
@@ -352,7 +271,7 @@ fi
 rm gnusr.txt vldusr.txt
 }
 
-## 8. Habilita no PAM o grupo que pode utilizar o comando su ##
+## 7. Habilita no PAM o grupo que pode utilizar o comando su ##
 GrpPAM() {
 
 AddGrp
@@ -385,7 +304,7 @@ echo "Para visualizar logs da utilização do comando su, utilize o arquivo /var
 sleep 5
 }
 
-## 9. Remover Suid bit de comandos ##
+## 8. Remover Suid bit de comandos ##
 DisSUID() {
 echo
 echo "O Suid bit foi removido dos seguintes comandos: "
@@ -398,7 +317,7 @@ echo "$sbcmd"
 done
 }
 
-## 10. Configuração do SSH ##
+## 9. Configuração do SSH ##
 ConfigSSH() {
 
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.old
@@ -414,7 +333,7 @@ echo "Caso seja necessário fazer alterações posteriores, basta editar o arqui
 sleep 5
 }
 
-## 11. Configura os arquivos Motd e Issue.net do banner ##
+## 10. Configura os arquivos Motd e Issue.net do banner ##
 EdiMotdIssue() {
 echo
 echo "Desabilitando a mensagem de caixa de e-mail no login... "
@@ -439,7 +358,7 @@ mv /etc/issue.net /etc/issue.net.old
 CPBANNER
 }
 
-## 12. Configuração do Fail2ban ##
+## 11. Configuração do Fail2ban ##
 Fail2ban() {
 
 findbin2=$(which fail2ban-server | wc -l)
@@ -539,7 +458,7 @@ fi
 
 }
 
-## 13. Instala, configura e executa o Rkhunter ##
+## 12. Instala, configura e executa o Rkhunter ##
 Rkh() {
 
 findbin3=$(which rkhunter | wc -l)
@@ -587,7 +506,7 @@ fi
 
 }
 
-## 14. Remove pacotes desnecessários da instalação padrão  ##
+## 13. Remove pacotes desnecessários da instalação padrão  ##
 RmPKG() {
 echo
 echo "Removendo pacotes desnecessários: "
@@ -599,7 +518,7 @@ apt autoremove -y
 apt clean
 }
 
-## 15. Verifica a duplicidade de ID do Root  ##
+## 14. Verifica a duplicidade de ID do Root  ##
 RtID() {
 
 idroot=$(cat /etc/passwd | grep :0: | wc -l)
@@ -634,7 +553,7 @@ else
 fi
 }
 
-## 16. Protege partições listadas no arquivo /etc/fstab   ##
+## 15. Protege partições listadas no arquivo /etc/fstab   ##
 EditFstab(){
 
 cp /etc/fstab /etc/fstab.old
@@ -691,6 +610,87 @@ done < clFstab.txt
 
 FSTReboot
 
+}
+
+# 16. Inicia todas as opções
+StartAllOptions() {
+clear
+cat logo.txt
+echo "############################################################################"
+echo "###  Atualizando lista de pacotes e instala pacotes para o hardening     ###"
+echo "############################################################################"
+PKGS
+echo
+echo "############################################################################"
+echo "###          Atualizando pacotes que possuem vulnerabilidades            ###"
+echo "############################################################################"
+UpdatePKG
+echo
+echo "############################################################################"
+echo "###                 Desabilitando CTRL + ALT + DEL                       ###"
+echo "############################################################################"
+DisKeys
+echo
+echo "############################################################################"
+echo "###          Habilitando tempo de logout para terminal ocioso            ###"
+echo "############################################################################"
+LgtTerm
+echo
+echo "############################################################################"
+echo "###             Desabilitando login do Root no terminal físico           ###"
+echo "############################################################################"
+DisTermRoot
+echo
+echo "############################################################################"
+echo "###    Desabilitando shell de usuários/serviços que não fazen login      ###"
+echo "############################################################################"
+DisShell
+echo
+echo "############################################################################"
+echo "###              Habilitando grupo que pode usar o comando su            ###"
+echo "############################################################################"
+GrpPAM
+echo
+echo "############################################################################"
+echo "###                    Removendo suid bit de comandos                    ###"
+echo "############################################################################"
+DisSUID
+echo
+echo "############################################################################"
+echo "###                          Configurando SSH                            ###"
+echo "############################################################################"
+ConfigSSH
+echo
+echo "############################################################################"
+echo "###                          Configurando Banner                         ###"
+echo "############################################################################"
+EdiMotdIssue
+echo
+echo "############################################################################"
+echo "###                          Configurando o Fail2ban                     ###"
+echo "############################################################################"
+Fail2ban
+echo
+echo "############################################################################"
+echo "###           Rkhunter - Analisa o sistema em busca de rootkits          ###"
+echo "############################################################################"
+Rkh
+echo
+echo "############################################################################"
+echo "###                    Removendo pacotes desnecessários                  ###"
+echo "############################################################################"
+RmPKG
+echo
+echo "############################################################################"
+echo "###                    Verificando duplicidade de ID do Root             ###"
+echo "############################################################################"
+RtID
+echo
+echo "############################################################################"
+echo "###                Protegendo partições listadas em /etc/fstab           ###"
+echo "############################################################################"
+EditFstab
+RtMenu
 }
 
 ###########################
