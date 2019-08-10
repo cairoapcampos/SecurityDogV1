@@ -6,7 +6,9 @@ Script de hardening em GNU/Linux Debian 9 & 10
 ## Instruções
 ### Instalação
 
-1. Ao instalar o sistema, particioná-lo com as seguintes partições além da swap:
+1. Ao instalar o sistema criar um usuário genérico para login. Por padrão criamos o usuário `manager`.
+
+2. As seguintes partições deverão ser criadas além da swap:
 
 `/boot, /, /home, /tmp, /var, /var/log`
 
@@ -14,7 +16,7 @@ Script de hardening em GNU/Linux Debian 9 & 10
 
 Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo com os serviços que serão utilizados.
 
-2. Na janela de `Seleção de software` marcar apenas as opções `servidor ssh` e `utilitários de sistema padrão`.
+3. Na janela de `Seleção de software` marcar apenas as opções `servidor ssh` e `utilitários de sistema padrão`.
 
 ![Initial Screen](https://github.com/cairoapcampos/SecurityDogV1/raw/master/img3.png)
 
