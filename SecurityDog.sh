@@ -23,44 +23,44 @@ menu() {
    echo "#############################################################################"
    echo "######                       Opções de Hardening                       ######"
    echo "#############################################################################"
-   echo "###  1 - Iniciar todas as configurações                                   ###"
-   echo "###  2 - Atualizar lista de pacotes e instalar pacotes para o hardening   ###"
-   echo "###  3 - Atualizar pacotes que possuem vulnerabilidades                   ###"
-   echo "###  4 - Desabilitar CTRL + ALT + DEL                                     ###"
-   echo "###  5 - Habilitar tempo de logout para terminal ocioso                   ###"
-   echo "###  6 - Desabilitar terminais para impedir o login de Root               ###"
-   echo "###  7 - Desabilitar Shell de usuários/serviços que não fazem login       ###"
-   echo "###  8 - Habilitar grupo que pode usar o comando su                       ###"
-   echo "###  9 - Remover Suid bit de comandos                                     ###"
-   echo "###  10 - Configurar SSH                                                  ###"
-   echo "###  11 - Configuração de Banner                                          ###"
-   echo "###  12 - Configurar Fail2ban                                             ###"
-   echo "###  13 - Analisar o sistema em busca de Rootkits                         ###"
-   echo "###  14 - Remover pacotes desnecessários                                  ###"
-   echo "###  15 - Verificar duplicidade de ID do Root                             ###"
-   echo "###  16 - Proteger partições listadas em /etc/fstab                       ###"
+   echo "###  1 - Atualizar lista de pacotes e instalar pacotes para o hardening   ###"
+   echo "###  2 - Atualizar pacotes que possuem vulnerabilidades                   ###"
+   echo "###  3 - Desabilitar CTRL + ALT + DEL                                     ###"
+   echo "###  4 - Habilitar tempo de logout para terminal ocioso                   ###"
+   echo "###  5 - Desabilitar terminais para impedir o login de Root               ###"
+   echo "###  6 - Desabilitar Shell de usuários/serviços que não fazem login       ###"
+   echo "###  7 - Habilitar grupo que pode usar o comando su                       ###"
+   echo "###  8 - Remover Suid bit de comandos                                     ###"
+   echo "###  9 - Configurar SSH                                                  ###"
+   echo "###  10 - Configuração de Banner                                          ###"
+   echo "###  11 - Configurar Fail2ban                                             ###"
+   echo "###  12 - Analisar o sistema em busca de Rootkits                         ###"
+   echo "###  13 - Remover pacotes desnecessários                                  ###"
+   echo "###  14 - Verificar duplicidade de ID do Root                             ###"
+   echo "###  15 - Proteger partições listadas em /etc/fstab                       ###"
+   echo "###  16 - Iniciar todas as configurações                                   ###"
    echo "###  0 - Sair                                                             ###"
    echo "#############################################################################"
    echo
    echo -n "Escolha uma das opções acima: "
    read opmenu
    case $opmenu in
-       1) StartAllOptions ;;
-       2) PKGSRT ;;
-       3) UpdatePKGRT ;;
-       4) DisKeysRT ;;
-       5) LgtTermRT ;;
-       6) DisTermRootRT ;;
-       7) DisShellRT ;;
-       8) GrpPAMRT ;;
-       9) DisSUIDRT ;;
-       10) ConfigSSHRT ;;
-       11) EdiMotdIssueRT ;;
-       12) Fail2banRT ;;
-       13) RkhRT ;;
-       14) RmPKGRT ;;
-       15) RtIDRT ;;
-       16) EditFstabRT;;
+       1) PKGSRT ;;
+       2) UpdatePKGRT ;;
+       3) DisKeysRT ;;
+       4) LgtTermRT ;;
+       5) DisTermRootRT ;;
+       6) DisShellRT ;;
+       7) GrpPAMRT ;;
+       8) DisSUIDRT ;;
+       9) ConfigSSHRT ;;
+       10) EdiMotdIssueRT ;;
+       11) Fail2banRT ;;
+       12) RkhRT ;;
+       13) RmPKGRT ;;
+       14) RtIDRT ;;
+       15) EditFstabRT;;
+       16) StartAllOptions ;;
        0) exit ;;
        *) echo " "
           echo "Opção Invalida! Retornando ao Menu..."
