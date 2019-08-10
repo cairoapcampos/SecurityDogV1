@@ -24,6 +24,8 @@ Obs: O tamanho a ser definido para cada partição, deve ser avaliado de acordo 
 
 ### Pós-instalação
 
+#### Criação de Usuários
+
 1. Fazer login como root:
 
 `su -`
@@ -37,21 +39,23 @@ adduser maria
 adduser jose
 ```
 
-3. Instalar o pacote `git`:
+#### Execução do Script
+
+1. Instalar o pacote `git`:
 
 `apt install git`
 
-4. Clonar o repositório:
+2. Clonar o repositório:
 
 `git clone https://github.com/cairoapcampos/SecurityDogV1.git`
 
-5. Alterar permissões de scripts para que sejam executaveis:
+3. Alterar permissões de scripts para que sejam executaveis:
 
 `cd SecurityDogV1`
 
 `chmod 700 SecurityDog.sh DebsecanUpdatePkgs.sh`
 
-6. Rodar o script `SecurityDog.sh`:
+4. Rodar o script `SecurityDog.sh`:
 
 `./SecurityDog.sh`
 
