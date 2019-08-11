@@ -24,7 +24,7 @@ menu() {
    echo "######                       Opções de Hardening                       ######"
    echo "#############################################################################"
    echo "###  1 - Atualizar lista de pacotes e instalar pacotes para o hardening   ###"
-   echo "###  2 - Atualizar pacotes que possuem vulnerabilidades                   ###"
+   echo "###  2 - Atualizar pacotes                                                ###"
    echo "###  3 - Desabilitar CTRL + ALT + DEL                                     ###"
    echo "###  4 - Habilitar tempo de logout para terminal ocioso                   ###"
    echo "###  5 - Desabilitar terminais para impedir o login de Root               ###"
