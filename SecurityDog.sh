@@ -28,7 +28,7 @@ menu() {
    echo "###  3 - Desabilitar CTRL + ALT + DEL                                     ###"
    echo "###  4 - Habilitar tempo de logout para terminal ocioso                   ###"
    echo "###  5 - Desabilitar terminais para impedir o login direto do root        ###"
-   echo "###  6 - Desabilitar Shell de usuários/serviços que não fazem login       ###"
+   echo "###  6 - Desabilitar shell de usuários de sistema                         ###"
    echo "###  7 - Habilitar grupo que pode usar o comando su                       ###"
    echo "###  8 - Remover Suid bit de comandos                                     ###"
    echo "###  9 - Configurar SSH                                                   ###"
