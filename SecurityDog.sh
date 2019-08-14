@@ -513,7 +513,7 @@ echo "Removendo pacotes desnecessários: "
 sleep 3
 echo
 apt purge -y bluez bluetooth crda iw libiw30:amd64 wireless-regdb wireless-tools wpasupplicant 
-apt purge -y netcat-traditional telnet wget git
+apt purge -y netcat-traditional telnet git
 apt autoremove -y
 apt clean
 }
