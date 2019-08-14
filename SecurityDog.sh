@@ -36,7 +36,7 @@ menu() {
    echo "###  11 - Configurar Fail2ban                                             ###"
    echo "###  12 - Analisar o sistema em busca de Rootkits                         ###"
    echo "###  13 - Remover pacotes desnecessários                                  ###"
-   echo "###  14 - Verificar duplicidade de ID do Root                             ###"
+   echo "###  14 - Verificar duplicidade de UID do root                            ###"
    echo "###  15 - Proteger partições listadas em /etc/fstab                       ###"
    echo "###  16 - Iniciar todas as configurações                                  ###"
    echo "###  0 - Sair                                                             ###"
