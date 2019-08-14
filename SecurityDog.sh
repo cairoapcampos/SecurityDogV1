@@ -518,7 +518,7 @@ apt autoremove -y
 apt clean
 }
 
-## 14. Verifica a duplicidade de ID do Root  ##
+## 14. Verifica a duplicidade de UID do Root  ##
 RtID() {
 
 idroot=$(cat /etc/passwd | grep :0: | wc -l)
@@ -528,9 +528,9 @@ infoid=$(cat /etc/passwd | grep :0:)
 if [ $idroot -gt 1 ]
 then
     echo
-    echo "Existe mais de um usuário com o ID 0. Somente o Root pode ter esse ID!: "
+    echo "Existe mais de um usuário com o UID 0. Somente o Root pode ter esse UID!: "
     echo
-    echo "Os usuários de ID's duplicados são: "
+    echo "Os usuários de UID's duplicados são: "
     sleep 3
     echo
     echo "$userid"
@@ -542,7 +542,7 @@ then
     sleep 3
 else
     echo
-    echo "O usuário com o ID 0 é o: $userid"
+    echo "O usuário com o UID 0 é o: $userid"
     sleep 3
     echo
     echo "Configuração em /etc/passwd: "
