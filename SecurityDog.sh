@@ -1051,14 +1051,12 @@ then
 cp issue.net.eng /etc/issue.net
 cp motd-banner_eng /etc/update-motd.d/00-motd
 chmod +x /etc/update-motd.d/00-motd
-rm issue.net.pt_BR motd-banner_pt-BR issue.net.eng motd-banner_eng
 systemctl restart ssh.service
 elif [ $banner = "n" ]
 then
 cp issue.net.pt_BR /etc/issue.net
 cp motd-banner_pt-BR /etc/update-motd.d/00-motd
 chmod +x /etc/update-motd.d/00-motd
-rm issue.net.pt_BR motd-banner_pt-BR issue.net.eng motd-banner_eng
 systemctl restart ssh.service
 else
 echo
