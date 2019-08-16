@@ -350,11 +350,11 @@ sed -i 's/#PrintLastLog yes/PrintLastLog no/' /etc/ssh/sshd_config
 echo
 echo "Desabilitando antigos arquivos do motd... "
 sleep 3
-chmod -x /etc/update-motd.d/10-uname
-mv /etc/update-motd.d/10-uname /etc/update-motd.d/10-uname.old
-mv /etc/motd /etc/motd.old
-mv /etc/issue /etc/issue.old
-mv /etc/issue.net /etc/issue.net.old
+chmod -x /etc/update-motd.d/10-uname 2> /dev/null
+mv /etc/update-motd.d/10-uname /etc/update-motd.d/10-uname.old 2> /dev/null
+mv /etc/motd /etc/motd.old 2> /dev/null
+mv /etc/issue /etc/issue.old 2> /dev/null
+mv /etc/issue.net /etc/issue.net.old 2> /dev/null
 CPBANNER
 }
 
