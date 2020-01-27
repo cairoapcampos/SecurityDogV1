@@ -38,7 +38,7 @@ adduser pedro
 adduser maria
 adduser jose
 ```
-Atenção! De acordo com o item `2.3.11 Habilitar grupo que pode usar o comando su` no arquivo `ArtigoV4.pdf` presente na pasta Docs do projeto, quando um grupo é criado para usar o comando `su`, os usuários válidos que possuem uma pasta no diretório `/home` são adicionados automaticamente nele. Esse recurso é interessante para a maioria dos tipos de servidores, porém quando o servidor é um `File Server e/ou um Servidor de Dominio`, o script deve ser alterado para que a pasta dos usuários administradores não seja `/home`, já que este diretório geralmente contém as pastas de todos usuários de uma organização que de forma errônea poderiam ser adicionados ao grupo. Na versão 2 do script esse problema irá ser corrigido.  
+**Atenção!** De acordo com o item `2.3.11 Habilitar grupo que pode usar o comando su` no arquivo `ArtigoV4.pdf` presente na pasta Docs do projeto, quando um grupo é criado para usar o comando `su`, os usuários válidos que possuem uma pasta no diretório `/home` são adicionados automaticamente nele. Esse recurso é interessante para a maioria dos tipos de servidores, porém quando o servidor é um `File Server e/ou um Servidor de Dominio`, o script deve ser alterado para que a pasta dos usuários administradores não seja `/home`, já que este diretório geralmente contém as pastas de todos usuários de uma organização que de forma errônea poderiam ser adicionados ao grupo. Na versão 2 do script esse problema irá ser corrigido.  
 
 #### Execução do Script
 
